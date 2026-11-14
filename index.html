@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Milo — Kişisel Yapay Zeka Masaüstü Robotu | iPhone + ESP32 + Gemini 2.5</title>
+  <meta name="description" content="Milo, iPhone'unuzun gücünü, ARKit yüz takibini, Gemini 2.5 Flash multimodal yapay zekasını ve ESP32 motorlu robot gövdesini birleştiren yeni nesil masaüstü arkadaşınızdır.">
+  <meta name="theme-color" content="#07080E">
+  <link rel="icon" type="image/png" href="assets/milo-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Ana içeriğe atla</a>
+
+  <!-- Ambient Cyber Nebula & Dot Matrix -->
+  <div class="ambient-canvas" aria-hidden="true"></div>
+  <div class="ambient-grid" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a href="#" class="brand-link" aria-label="Milo the Robot Ana Sayfa">
+        <img
+          src="assets/milo-logo.png"
+          alt="Milo Robot Logo"
+          class="brand-logo"
+          width="42"
+          height="42"
+          fetchpriority="high"
+        >
+        <span class="brand-name">
+          Milo
+          <span class="brand-tag">v2.5 AI ROBOT</span>
+        </span>
+      </a>
+
+      <nav aria-label="Ana Menü">
+        <ul class="nav-links">
+          <li><a href="#mimari">Mimari</a></li>
+          <li><a href="#entegrasyonlar">Telefon &amp; Bulut</a></li>
+          <li><a href="#komut-laboratuvari">Canlı Simülatör</a></li>
+          <li><a href="#donanim">ESP32 Donanım</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button type="button" id="open-arch-modal" class="btn btn-glass btn-sm">
+          Teknik Şema
+        </button>
+        <a href="https://github.com/cerilas/milo-the-robot" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+          GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="status-pill">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>GEMINI 2.5 FLASH • ARKIT • ESP32 WEBSOCKET</span>
+          </div>
+
+          <h1>
+            iPhone’unu Canlı Bir <span class="gradient-text">Yapay Zeka Robota</span> Dönüştür.
+          </h1>
+
+          <p class="hero-lead">
+            <strong>Milo</strong>, iPhone’unu mıknatıslı ESP32 motorlu gövdesiyle birleştirerek seni gözleriyle takip eden, 9 farklı duyguyla tepki veren, gördüğü nesneleri anlatan ve telefonundaki 10 yerleşik yeteneği sesinle yöneten masaüstü robot arkadaşındır.
+          </p>
+
+          <div class="hero-cta-row">
+            <a href="#komut-laboratuvari" class="btn btn-primary">
+              Canlı Komutları Dene
+            </a>
+            <a href="#entegrasyonlar" class="btn btn-glass">
+              10 iPhone Yeteneğini Keşfet
+            </a>
+          </div>
+
+          <div class="hero-telemetry" aria-label="Milo Özet Teknik Göstergeler">
+            <div class="telemetry-item">
+              <span class="telemetry-label">Duygu &amp; Mimik</span>
+              <span class="telemetry-value">9 Canlı Mod</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="telemetry-label">iOS &amp; Bulut Araçları</span>
+              <span class="telemetry-value">22+ Fonksiyon</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="telemetry-label">Donanım Gecikmesi</span>
+              <span class="telemetry-value">&lt; 25 ms</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- INTERACTIVE MILO FACE STAGE -->
+        <div class="milo-stage-wrapper">
+          <div class="iphone-landscape-frame" role="region" aria-label="Canlı Etkileşimli Milo Yüz Simülasyonu">
+            <div class="iphone-Notch" aria-hidden="true"></div>
+
+            <div class="milo-screen" id="milo-screen" data-emotion="neutral">
+              <!-- Top HUD -->
+              <div class="hud-top">
+                <div class="hud-controls">
+                  <button
+                    type="button"
+                    class="hud-pill-btn"
+                    id="toggle-tracking-btn"
+                    aria-pressed="false"
+                  >
+                    <span aria-hidden="true">⌖</span>
+                    <span class="tracking-label">TAKİP</span>
+                  </button>
+                  <button
+                    type="button"
+                    class="hud-pill-btn"
+                    id="trigger-speak-btn"
+                    aria-pressed="false"
+                  >
+                    <span aria-hidden="true">🔊</span>
+                    <span>SES TESTİ</span>
+                  </button>
+                </div>
+
+                <div class="hud-status-badge">
+                  <span class="hud-battery" title="ESP32 Canlı Batarya Telemetrisi">
+                    ⚡ %94
+                  </span>
+                  <div class="hud-emotion-meta">
+                    <span class="hud-emotion-title" id="hud-emotion-title">Normal</span>
+                    <span class="hud-robot-id">MILO-01</span>
+                  </div>
+                  <span class="hud-emotion-dot" aria-hidden="true"></span>
+                </div>
+              </div>
+
+              <!-- Face Canvas + Optional ARKit Camera Tracking Split -->
+              <div class="face-body-split" id="face-body-split">
+                <div class="milo-face-canvas">
+                  <div class="eyes-row">
+                    <div class="milo-eye left" id="eye-left"></div>
+                    <div class="milo-eye right" id="eye-right"></div>
+                  </div>
+                  <div class="milo-mouth" id="milo-mouth"></div>
+                </div>
+
+                <div class="tracking-hud-panel" aria-label="ARKit Yüz Takip Kamera Paneli">
+                  <div class="tracking-meta">
+                    <span>ARKIT TRUE-DEPTH</span>
+                    <span style="color: var(--success);">● KİLİTLİ</span>
+                  </div>
+                  <div class="tracking-reticle">
+                    <div class="reticle-box"></div>
+                  </div>
+                  <div class="tracking-meta">
+                    <span>YAW: +4.2°</span>
+                    <span>MOTOR: AKTİF</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottom Speech Bubble & State -->
+              <div class="hud-bottom">
+                <div class="ai-speech-bubble" id="ai-speech-bubble" aria-live="polite">
+                  Merhaba! Ben Milo. Masaüstünde seni dinliyor ve etrafı takip ediyorum.
+                </div>
+                <div class="hud-state-capsule">
+                  <span aria-hidden="true">🎙</span>
+                  <span id="hud-state-text">DİNLİYOR • GEMINI 2.5 FLASH</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Emotion Switcher Dock -->
+          <div class="emotion-dock">
+            <div class="emotion-dock-header">
+              <span>Canlı Duygu Motoru (SwiftUI GismoFaceView Birebir Simülasyonu)</span>
+              <button type="button" id="toggle-autocycle-btn" class="hud-pill-btn">
+                ⏸ Otomatik Duygu: Duraklat
+              </button>
+            </div>
+            <div class="emotion-buttons" role="group" aria-label="Milo duygusunu seçin">
+              <button type="button" class="emo-btn" data-emotion="neutral" aria-pressed="true">
+                <span class="emo-swatch" style="background:#72DDF7" aria-hidden="true"></span>Normal
+              </button>
+              <button type="button" class="emo-btn" data-emotion="veryHappy" aria-pressed="false">
+                <span class="emo-swatch" style="background:#FFE66D" aria-hidden="true"></span>Çok Mutlu
+              </button>
+              <button type="button" class="emo-btn" data-emotion="happy" aria-pressed="false">
+                <span class="emo-swatch" style="background:#00D4AA" aria-hidden="true"></span>Mutlu
+              </button>
+              <button type="button" class="emo-btn" data-emotion="listening" aria-pressed="false">
+                <span class="emo-swatch" style="background:#7AFBFF" aria-hidden="true"></span>Dinliyor
+              </button>
+              <button type="button" class="emo-btn" data-emotion="thoughtful" aria-pressed="false">
+                <span class="emo-swatch" style="background:#B794F4" aria-hidden="true"></span>Düşünceli
+              </button>
+              <button type="button" class="emo-btn" data-emotion="surprised" aria-pressed="false">
+                <span class="emo-swatch" style="background:#FFB800" aria-hidden="true"></span>Şaşırmış
+              </button>
+              <button type="button" class="emo-btn" data-emotion="sad" aria-pressed="false">
+                <span class="emo-swatch" style="background:#5B8FF9" aria-hidden="true"></span>Üzgün
+              </button>
+              <button type="button" class="emo-btn" data-emotion="angry" aria-pressed="false">
+                <span class="emo-swatch" style="background:#FF4560" aria-hidden="true"></span>Kızgın
+              </button>
+              <button type="button" class="emo-btn" data-emotion="sleeping" aria-pressed="false">
+                <span class="emo-swatch" style="background:#3A4A6B" aria-hidden="true"></span>Uyuyor
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE ARCHITECTURE BENTO SECTION -->
+    <section class="section" id="mimari">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Hibrit Robotik Mimari</span>
+          <h2>Beyin iPhone’da, Gövde ESP32’de, Zeka Gemini’da.</h2>
+          <p>
+            Pahalı ve hantal gömülü işlemciler yerine cebinizdeki iPhone’un Neural Engine, kamera ve mikrofon dizisini kullanan akıllı hibrit tasarım.
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          <article class="glass-card bento-span-7 reveal-on-scroll">
+            <div class="card-icon-badge" aria-hidden="true">✦</div>
+            <h3>Gemini 2.5 Flash Multimodal Beyin &amp; Görsel Analiz</h3>
+            <p>
+              Milo’ya <em>“Elimde ne var?”</em>, <em>“Üstümdeki gömlek ne renk?”</em> veya <em>“Şu belgeyi oku”</em> dediğinizde fotoğrafı galeriye kaydetmeden anlık çerçeve yakalar, Gemini 2.5 Flash ile analiz eder ve hem sesli yanıt verir hem de duygu durumuna uygun fiziksel motor koreografisi üretir.
+            </p>
+            <ul class="feature-chips">
+              <li>gemini-2.5-flash</li>
+              <li>gemini-2.5-flash-preview-tts</li>
+              <li>Anlık Görsel Soru-Cevap</li>
+              <li>Çok Turlu Hafıza (GismoMemoryService)</li>
+            </ul>
+          </article>
+
+          <article class="glass-card bento-span-5 reveal-on-scroll">
+            <div class="card-icon-badge" aria-hidden="true">⌖</div>
+            <h3>ARKit Yüz Takibi &amp; Lens Göz Modu</h3>
+            <p>
+              Ekran %58 Robot Yüzü ve %42 Canlı Kamera Takip HUD paneline bölünür. Milo yüzünüzü kadrajda ortalamak için ESP32 motorlarına otomatik sağ/sol dönüş komutları gönderir. Selfie çekeceği zaman sol gözü gerçekçi bir kamera lensine dönüşür!
+            </p>
+            <ul class="feature-chips">
+              <li>ARKit &amp; SceneKit</li>
+              <li>CameraLensEye</li>
+              <li>Polaroid Önizleme</li>
+            </ul>
+          </article>
+
+          <article class="glass-card bento-span-4 reveal-on-scroll">
+            <div class="card-icon-badge" aria-hidden="true">♫</div>
+            <h3>CuteRobotVoiceDSP Ses Sentezi</h3>
+            <p>
+              Standart mekanik asistan sesleri yerine özel DSP (Digital Signal Processing) ses motoruyla sıcak, sevimli ve konuşma şiddetine (`speechLevel`) duyarlı gerçek zamanlı ağız senkronizasyonu.
+            </p>
+          </article>
+
+          <article class="glass-card bento-span-4 reveal-on-scroll">
+            <div class="card-icon-badge" aria-hidden="true">⌨</div>
+            <h3>Akıllı Hibrit Ses + Klavye Fallback</h3>
+            <p>
+              Gürültülü ortamlarda e-posta adresi, dosya adı veya kişi ismi ilk sesli denemede anlaşılamazsa Milo ekranda otomatik olarak cam efektli manuel giriş kutusu (`ManualInputOverlayView`) açar.
+            </p>
+          </article>
+
+          <article class="glass-card bento-span-4 reveal-on-scroll">
+            <div class="card-icon-badge" aria-hidden="true">⚡</div>
+            <h3>Akıllı Batarya Koruma &amp; Kilit</h3>
+            <p>
+              ESP32 ADC voltaj bölücüsünden gelen 2S Li-Ion batarya verisi canlı izlenir. Pil %5’in altına indiğinde donanımı korumak için otomatik `LowBatteryLockOverlay` devreye girer.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHONE & CLOUD INTEGRATIONS SECTION -->
+    <section class="section" id="entegrasyonlar">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Ekosistem &amp; Yetenekler</span>
+          <h2>Telefonunuz ve Bulut Servislerinizle Tam Entegre.</h2>
+          <p>
+            Milo yalnızca sohbet etmez; iOS sistem çerçeveleri, Google Workspace ve Netgsm üzerinden gerçek aksiyonlar alır.
+          </p>
+        </div>
+
+        <div class="integrations-layout">
+          <!-- Left: 10 Default iPhone Capabilities -->
+          <div class="glass-card reveal-on-scroll">
+            <div class="cap-header-row">
+              <div>
+                <h3>iPhone Yerleşik Yetenekleri</h3>
+                <p>Uygulama içinden tek dokunuşla açılıp kapatılabilen 10 yerel iOS entegrasyonu.</p>
+              </div>
+              <span class="cap-badge-default">10/10 VARSAYILAN YETENEK</span>
+            </div>
+
+            <div class="cap-grid">
+              <div class="cap-item">
+                <div class="cap-icon" style="background: rgba(140, 153, 178, 0.35);" aria-hidden="true">📷</div>
+                <div class="cap-info">
+                  <h4>Kamera &amp; Görsel Analiz</h4>
+                  <p>Fotoğraf çekme, selfie kaydetme ve gördüğünü anlık anlatma (`analyzeCamera`).</p>
+                </div>
+              </div>
+
+              <div class="cap-item">
+                <div class="cap-icon" style="background: rgba(158, 140, 122, 0.35);" aria-hidden="true">👤</div>
+                <div class="cap-info">
+                  <h4>Rehber &amp; Doğum Günleri</h4>
+                  <p>Türkçe ek çözümlemeli kişi arama (`Annem` → `Anne`), e-posta ve yaklaşan doğum günleri.</p>
+                </div>
+              </div>
+
+              <div class="cap-item">
+                <div class="cap-icon" style="background: rgba(255, 84, 84, 0.32);" aria-hidden="true">📅</div>
+                <div class="cap-info">
+                  <h4>Takvim (EventKit)</h4>
+                  <p>Günlük/haftalık programı listeleme ve 15 dk önceden hatırlatmalı yeni etkinlik ekleme.</p>
+                </div>
+              </div>
+
+              <div class="cap-item">
+                <div class="cap-icon" style="background: rgba(255, 158, 51, 0.32);" aria-hidden="true">☑️</div>
+                <div class="cap-info">
+                  <h4>Anımsatıcılar</h4>
+                  <p>Yapılacaklar listesini okuma ve tarih/saat bildirimli yeni görev oluşturma.</p>
+                </div>
+              </div>
+
+              <div class="cap-item">
+                <div class="cap-icon" style="background: rgba(255, 191, 51, 0.32);" aria-hidden="true">⏰</div>
+                <div class="cap-info">
+                  <h4>Alarm &amp; Zamanlayıcı (AlarmKit)</h4>
+                  <p>iOS 26+ `AlarmKit` ile gerçek sistem alarmı ve geri sayım sayacı kurma/iptal etme.</p>
+                </div>
+              </div>
+
+              <div class="cap-item">
+                <div class="cap-icon" style="background: rgba(115, 230, 89, 0.28);" aria-hidden="true">🚶</div>
+                <div class="cap-info">
+                  <h4>Aktivite &amp; Hareket (CoreMotion)</h4>
+                  <p>Günlük adım sayar, mesafe, çıkılan kat ve anlık hareket durumu analizi.</p>
+                </div>
+              </div>
+
+              <div class="cap-item">
+                <div class="cap-icon" style="background: rgba(64, 153, 255, 0.32);" aria-hidden="true">📍</div>
+                <div class="cap-info">
+                  <h4>Konum, Hava &amp; Yol Tarifi</h4>
+                  <p>Bulunduğunuz semt/adres, 3 günlük hava tahmini ve Apple Haritalar rotası açma.</p>
+                </div>
+              </div>
+
+              <div class="cap-item">
+                <div class="cap-icon" style="background: rgba(64, 217, 102, 0.3);" aria-hidden="true">📞</div>
+                <div class="cap-info">
+                  <h4>Telefon Araması</h4>
+                  <p>Rehberdeki kişiyi bulup iOS sistem onayıyla hızlıca sesli arama başlatma.</p>
+                </div>
+              </div>
+
+              <div class="cap-item">
+                <div class="cap-icon" style="background: rgba(77, 217, 115, 0.3);" aria-hidden="true">💬</div>
+                <div class="cap-info">
+                  <h4>SMS, iMessage &amp; WhatsApp</h4>
+                  <p>Alıcıyı ve mesaj metnini hazırlayarak SMS veya WhatsApp sohbet ekranını açma.</p>
+                </div>
+              </div>
+
+              <div class="cap-item">
+                <div class="cap-icon" style="background: rgba(140, 140, 242, 0.32);" aria-hidden="true">🔦</div>
+                <div class="cap-info">
+                  <h4>Cihaz Durumu, Fener &amp; Parlaklık</h4>
+                  <p>Telefon pili, boş depolama alanı, flaş fener aç/kapat ve ekran parlaklığı kontrolü.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Cloud Partners (Google Workspace + Netgsm) -->
+          <div class="partner-stack">
+            <article class="glass-card reveal-on-scroll">
+              <div class="partner-header">
+                <img
+                  src="assets/google-services.webp"
+                  alt="Google Servisleri Logosu"
+                  class="partner-logo"
+                  width="48"
+                  height="48"
+                  loading="lazy"
+                >
+                <div>
+                  <span class="cap-badge-default">GOOGLE OAUTH 2.0</span>
+                  <h3>Google Workspace Entegrasyonu</h3>
+                </div>
+              </div>
+              <p>
+                Google hesabınızla bağlandığınızda Milo; <strong>Gmail</strong> gelen kutunuzu takip eder, yeni e-postaları sesli okur, yanıtlar ve çektiği fotoğrafları veya oluşturduğu belgeleri doğrudan <strong>Google Drive</strong> klasörlerinize yükler.
+              </p>
+              <ul class="feature-chips">
+                <li>Gmail Gelen Kutusu &amp; Yanıt</li>
+                <li>Google Drive Fotoğraf Yedekleme</li>
+                <li>Doküman Arama</li>
+              </ul>
+            </article>
+
+            <article class="glass-card reveal-on-scroll">
+              <div class="partner-header">
+                <img
+                  src="assets/netgsm-logo.jpeg"
+                  alt="Netgsm Logosu"
+                  class="partner-logo"
+                  width="48"
+                  height="48"
+                  loading="lazy"
+                >
+                <div>
+                  <span class="cap-badge-default">KURUMSAL TELEKOM</span>
+                  <h3>Netgsm Arka Plan SMS &amp; Santral</h3>
+                </div>
+              </div>
+              <p>
+                iOS’ta standart SMS gönderimi kullanıcı onayı gerektirirken, <strong>Netgsm</strong> entegrasyonu sayesinde Milo sesli komutunuzla hiçbir ek ekrana dokunmanıza gerek kalmadan arka planda doğrudan SMS gönderebilir.
+              </p>
+              <ul class="feature-chips">
+                <li>Arka Planda Anında SMS</li>
+                <li>Başlıklı Kurumsal Gönderim</li>
+                <li>Panu Teknoloji Altyapısı</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE COMMAND PLAYGROUND -->
+    <section class="section" id="komut-laboratuvari">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Canlı Komut Laboratuvarı</span>
+          <h2>Milo’ya Seslenin, Arka Plandaki Zekayı İzleyin.</h2>
+          <p>
+            Bir sesli komuta tıklayın; Gemini 2.5 Flash’ın hangi aracı çağırdığını, hangi duyguya geçtiğini ve ESP32 motorlarına gönderdiği milisaniyelik hareket dizisini inceleyin.
+          </p>
+        </div>
+
+        <div class="playground-box">
+          <div class="prompt-list" role="listbox" aria-label="Örnek sesli komut senaryoları">
+            <button type="button" class="prompt-btn" role="option" aria-selected="true">
+              <span class="prompt-utterance">“Milo, şu an elimde ne var? Bakıp anlatır mısın?”</span>
+              <span class="prompt-tag">analyzeCamera</span>
+            </button>
+            <button type="button" class="prompt-btn" role="option" aria-selected="false">
+              <span class="prompt-utterance">“Yarın sabah 10:00’a Ürün Lansmanı toplantısı ekle ve 08:30’a alarm kur.”</span>
+              <span class="prompt-tag">Calendar + AlarmKit</span>
+            </button>
+            <button type="button" class="prompt-btn" role="option" aria-selected="false">
+              <span class="prompt-utterance">“Ahmet’e WhatsApp’tan ‘Robotiğin yeni yüzü Milo hazır!’ diye mesaj yaz.”</span>
+              <span class="prompt-tag">Contacts + WhatsApp</span>
+            </button>
+            <button type="button" class="prompt-btn" role="option" aria-selected="false">
+              <span class="prompt-utterance">“Son gelen önemli e-postamı özetle ve selfie çekip Google Drive’a kaydet.”</span>
+              <span class="prompt-tag">Gmail + Drive</span>
+            </button>
+            <button type="button" class="prompt-btn" role="option" aria-selected="false">
+              <span class="prompt-utterance">“Ekibe Netgsm üzerinden ‘Milo sunucusu aktif’ SMS’i gönder ve feneri aç.”</span>
+              <span class="prompt-tag">Netgsm + Cihaz</span>
+            </button>
+          </div>
+
+          <div class="terminal-output" aria-live="polite">
+            <div class="terminal-top">
+              <div class="terminal-dots" aria-hidden="true">
+                <span style="background:#FF4769"></span>
+                <span style="background:#FFB800"></span>
+                <span style="background:#00E5B0"></span>
+              </div>
+              <span style="font-size: 0.72rem; color: var(--subtext);">GeminiService.swift → ESPService.swift</span>
+            </div>
+
+            <div class="terminal-body">
+              <div class="term-row">
+                <span class="term-key">1. Çağrılan Fonksiyon (Function Calling)</span>
+                <div class="term-val" id="term-tool">analyzeCamera(question: "Elimde ne var?")</div>
+              </div>
+
+              <div class="term-row">
+                <span class="term-key">2. Yüz Duygu Durumu (GismoEmotion)</span>
+                <div class="term-val" id="term-emotion">surprised (Şaşırmış)</div>
+              </div>
+
+              <div class="term-row">
+                <span class="term-key">3. ESP32 Motor Sekansı (MotorStep)</span>
+                <div class="motor-steps" id="term-motors">
+                  <span class="motor-chip">STOP (S) • 100ms</span>
+                  <span class="motor-chip">FORWARD (F) • 260ms</span>
+                </div>
+              </div>
+
+              <div class="term-row">
+                <span class="term-key">4. Milo’nun Sesli Yanıtı (TTS &amp; Balon)</span>
+                <div class="term-val speech" id="term-speech">
+                  Kameradan baktım! Elinde siyah kılıflı bir AirPods kutusu ve yanında kahve kupası tutuyorsun.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HARDWARE & ESP32 TELEMETRY SECTION -->
+    <section class="section" id="donanim">
+      <div class="container">
+        <div class="hw-grid">
+          <div>
+            <span class="eyebrow">ESP32 Gövde &amp; Firmware</span>
+            <h2>Çift Modlu Bağlantı ve Hassas Aktif Frenleme.</h2>
+            <p style="color: var(--subtext); margin: 14px 0 20px;">
+              Milo’nun fiziksel gövdesi ESP32 mikrodenetleyicisi üzerinde çalışır. İlk kurulumda kendi <code>GISMO_AP</code> erişim noktasını açar; Wi-Fi ağınıza bağlandıktan sonra hem yerel HTTP sunucusu (Port 80) hem de güvenli bulut WebSocket üzerinden gerçek zamanlı komut alır.
+            </p>
+
+            <dl class="spec-list">
+              <div class="spec-box">
+                <dt>Motor Sürücü Pinleri</dt>
+                <dd>GPIO 25, 26, 27, 14</dd>
+              </div>
+              <div class="spec-box">
+                <dt>Frenleme Teknolojisi</dt>
+                <dd>22ms Aktif Kısa Devre Freni</dd>
+              </div>
+              <div class="spec-box">
+                <dt>Batarya Ölçümü (ADC)</dt>
+                <dd>GPIO 34 • 16 Örnek Medyan</dd>
+              </div>
+              <div class="spec-box">
+                <dt>Çift Yönlü Telemetri</dt>
+                <dd>Her 2000ms Canlı Durum</dd>
+              </div>
+            </dl>
+          </div>
+
+          <figure class="code-figure">
+            <figcaption id="esp-code-caption">
+              <span>esp32.cpp — Aktif Frenleme &amp; Batarya Telemetrisi</span>
+              <span style="color: var(--success);">C++ / Arduino</span>
+            </figcaption>
+            <pre role="region" aria-labelledby="esp-code-caption" tabindex="0"><code>// Hassas duruş için 22ms aktif motor frenlemesi
+void stopMotors(bool activeBrake = true) {
+  motorStopAtMs = 0;
+  if (activeBrake &amp;&amp; currentMovementCommand != 'S') {
+    digitalWrite(IN1, HIGH);
+    digitalWrite(IN2, HIGH);
+    digitalWrite(IN3, HIGH);
+    digitalWrite(IN4, HIGH);
+    delay(22);
+  }
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
+  currentMovementCommand = 'S';
+}
+
+// 2S Li-Ion (6.0V - 8.40V) parazit filtreli pil yüzdesi
+int voltageToPercent(float voltage) {
+  if (voltage &lt; 4.5f) return -1;
+  if (voltage &lt;= 6.20f) return 0;
+  if (voltage &gt;= 8.35f) return 100;
+  return (int)((voltage - 6.20f) / (8.35f - 6.20f) * 100.0f);
+}</code></pre>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3-STEP ONBOARDING -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">3 Adımda Kurulum</span>
+          <h2>Kutudan Çıkar, Ağı Seç ve Milo ile Tanış.</h2>
+          <p>Uygulama içi 3 adımlı kurulum sihirbazıyla saniyeler içinde eşleşir.</p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="glass-card reveal-on-scroll">
+            <span class="step-number">ADIM 01</span>
+            <h3>AP Modunda Bağlan</h3>
+            <p>
+              Milo’yu çalıştırdığınızda oluşturduğu <code>GISMO_AP</code> kablosuz ağına iPhone’unuzla bağlanın; uygulama robot gövdesini otomatik algılar.
+            </p>
+          </article>
+
+          <article class="glass-card reveal-on-scroll">
+            <span class="step-number">ADIM 02</span>
+            <h3>Wi-Fi Ağı Tarama &amp; Kayıt</h3>
+            <p>
+              Milo çevredeki Wi-Fi ağlarını tarayıp iPhone ekranınıza listeler. Ev veya ofis ağınızın şifresini girerek Milo’yu internete bağlayın.
+            </p>
+          </article>
+
+          <article class="glass-card reveal-on-scroll">
+            <span class="step-number">ADIM 03</span>
+            <h3>Yatay Yüz Moduna Geç</h3>
+            <p>
+              iPhone’u Milo’nun başlığına yatay yerleştirin. Gemini API anahtarınızı ve telefon izinlerinizi onaylayarak canlı yüz modunu başlatın!
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION (Native <details name="milo-faq"> Exclusive Accordion) -->
+    <section class="section" id="sss" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Sıkça Sorulan Sorular</span>
+          <h2 id="faq-heading">Milo Hakkında Merak Edilenler</h2>
+          <p>Gizlilik, iOS güvenlik sınırları ve donanım uyumluluğu hakkında tüm detaylar.</p>
+        </div>
+
+        <div class="faq-container">
+          <details class="faq-item" name="milo-faq" open>
+            <summary>Milo telefonumdaki hangi bilgilere erişebilir, gizlilik nasıl korunur?</summary>
+            <div class="faq-content">
+              <p>
+                Milo, yalnızca sizin açıkça onay verdiğiniz izinleri (Kamera, Rehber, Takvim, Anımsatıcılar, Konum, Aktivite) kullanır. Uygulama içindeki <strong>Entegrasyonlar &gt; Telefon</strong> kartından 10 yeteneğin her birini istediğiniz an tek dokunuşla kapatabilirsiniz. Ayrıca yüz modu başlamadan önce açık veri paylaşım onayınız (`AIKeySheet`) alınır.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="milo-faq">
+            <summary>Apple güvenlik politikası gereği iOS’un izin vermediği işlemler nelerdir?</summary>
+            <div class="faq-content">
+              <p>
+                Apple güvenlik kuralları gereği hiçbir App Store uygulaması gelen SMS/iMessage içeriklerini okuyamaz, arama geçmişini göremez veya onaysız arama/SMS başlatamaz. Milo bunun yerine aramayı tek onay ekranıyla başlatır, SMS ve WhatsApp mesaj taslağınızı hazırlar, arka planda doğrudan SMS göndermek isterseniz <strong>Netgsm</strong> bulut entegrasyonunu kullanır ve kendi kurduğu alarmları iOS 26+ <code>AlarmKit</code> ile gerçek alarm olarak çaldırır.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="milo-faq">
+            <summary>Robot gövdesi kapandığında veya şarjı bittiğinde ne olur?</summary>
+            <div class="faq-content">
+              <p>
+                ESP32 gövdesi kapandığında veya bağlantı koptuğunda Milo’nun yüzü özel bir CRT kapanma animasyonuyla (`RobotBodyPowerOffOverlay`) uyku kilidine geçer. Batarya seviyesi %5’in altına düştüğünde ise Li-Ion hücreleri korumak için `LowBatteryLockOverlay` devreye girerek şarja takılana kadar motorları kilitler.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="milo-faq">
+            <summary>İnternet bağlantısı koptuğunda veya Wi-Fi değiştiğinde nasıl sıfırlanır?</summary>
+            <div class="faq-content">
+              <p>
+                Milo kayıtlı Wi-Fi ağına 6 deneme boyunca bağlanamazsa otomatik olarak tekrar <code>GISMO_AP</code> kurulum moduna döner. Ayrıca uygulama içindeki Kontrol ekranından istediğiniz zaman <em>“AP Moduna Al”</em> komutuyla Wi-Fi ayarlarını sıfırlayabilirsiniz.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Native Modal Dialog for Architecture Overview -->
+  <dialog id="arch-dialog" class="milo-modal" closedby="any" aria-labelledby="modal-title">
+    <form method="dialog">
+      <div class="modal-header">
+        <h2 id="modal-title" style="font-size: 1.25rem; font-weight: 800;">Milo Sistem Mimarisi</h2>
+        <button value="close" class="modal-close" aria-label="Pencereyi kapat">✕</button>
+      </div>
+      <p style="color: var(--subtext); font-size: 0.92rem; margin-bottom: 16px;">
+        Milo üç katmanlı gerçek zamanlı bir mimari üzerinde çalışır:
+      </p>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 22px; font-size: 0.9rem;">
+        <li style="padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border);">
+          <strong style="color: var(--cyan);">1. iOS Uygulaması (SwiftUI + ARKit):</strong> 9 duygulu yüz render motoru, kamera/yüz takibi, yerel iOS entegrasyonları ve DSP ses sentezi.
+        </li>
+        <li style="padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border);">
+          <strong style="color: var(--accent);">2. Yapay Zeka &amp; Bulut (Gemini 2.5 Flash + Railway WS):</strong> Sesli komutları anlamlandırma, görsel analiz, fonksiyon çağırma ve WebSocket senkronizasyonu.
+        </li>
+        <li style="padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border);">
+          <strong style="color: var(--success);">3. ESP32 Donanım Gövdesi:</strong> 4-pin diferansiyel motor sürüşü, 22ms aktif frenleme ve ADC batarya voltaj telemetrisi.
+        </li>
+      </ul>
+      <button value="ok" class="btn btn-primary" style="width: 100%;">Anladım</button>
+    </form>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="assets/milo-logo.png" alt="" width="34" height="34" loading="lazy" style="border-radius: 9px;">
+        <div>
+          <strong style="font-size: 1rem;">Milo the Robot</strong>
+          <p class="footer-copy">Kişisel Yapay Zeka Masaüstü Robotu • iOS &amp; ESP32</p>
+        </div>
+      </div>
+
+      <p class="footer-copy">
+        © 2026 Milo Robotics. <a href="https://github.com/cerilas/milo-the-robot" target="_blank" rel="noopener noreferrer" style="color: var(--accent-2); text-decoration: none;">github.com/cerilas/milo-the-robot</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
