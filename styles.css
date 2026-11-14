@@ -584,17 +584,50 @@ body {
 
 .tracking-reticle {
   flex: 1;
-  border: 1px dashed rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 12px;
   margin: 8px 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #08080B;
+}
+
+.tracking-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tracking-video.is-live {
+  opacity: 1;
+}
+
+.tracking-fallback-msg {
+  position: relative;
+  z-index: 2;
+  font-size: 0.7rem;
+  color: var(--subtext);
+  text-align: center;
+  padding: 0 10px;
+}
+
+.tracking-fallback-msg.hidden {
+  display: none;
 }
 
 .reticle-box {
-  width: 52px;
-  height: 52px;
+  position: relative;
+  z-index: 2;
+  width: 56px;
+  height: 56px;
   border: 2px solid var(--emo-primary);
   border-radius: 14px;
   box-shadow: 0 0 14px var(--emo-glow);

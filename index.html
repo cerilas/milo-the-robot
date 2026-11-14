@@ -124,14 +124,23 @@
                   <div class="tracking-hud-panel" aria-label="Göz Teması ve Yüz Takibi">
                     <div class="tracking-meta">
                       <span>Göz Teması</span>
-                      <span style="color: var(--success);">Sizi Görüyor</span>
+                      <span id="tracking-status-text" style="color: var(--subtext);">İzin Bekleniyor</span>
                     </div>
                     <div class="tracking-reticle">
+                      <video
+                        id="tracking-webcam"
+                        class="tracking-video"
+                        autoplay
+                        playsinline
+                        muted
+                        aria-hidden="true"
+                      ></video>
                       <div class="reticle-box" aria-hidden="true"></div>
+                      <span id="tracking-fallback-msg" class="tracking-fallback-msg">Kamera açılıyor...</span>
                     </div>
                     <div class="tracking-meta">
                       <span>Otomatik Dönüş</span>
-                      <span>Aktif</span>
+                      <span id="tracking-motor-text">Hazır</span>
                     </div>
                   </div>
                 </div>

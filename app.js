@@ -153,6 +153,83 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  const trackingStatusEl = document.getElementById("tracking-status-text");
+  const trackingMotorEl = document.getElementById("tracking-motor-text");
+  const trackingVideoEl = document.getElementById("tracking-webcam");
+  const trackingFallbackEl = document.getElementById("tracking-fallback-msg");
+  let cameraStream = null;
+
+  async function startTrackingCamera() {
+    if (!trackingVideoEl || !trackingStatusEl) return;
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      trackingStatusEl.textContent = "Desteklenmiyor";
+      trackingStatusEl.style.color = "var(--subtext)";
+      if (trackingFallbackEl) {
+        trackingFallbackEl.textContent = "Tarayıcı kamera erişimini desteklemiyor.";
+        trackingFallbackEl.classList.remove("hidden");
+      }
+      return;
+    }
+
+    trackingStatusEl.textContent = "İzin İsteniyor...";
+    trackingStatusEl.style.color = "var(--subtext)";
+    if (trackingFallbackEl) {
+      trackingFallbackEl.textContent = "Kamera izni bekleniyor...";
+      trackingFallbackEl.classList.remove("hidden");
+    }
+
+    try {
+      cameraStream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "user" },
+        audio: false
+      });
+
+      // User might have closed tracking before permission resolved
+      if (!splitContainer.classList.contains("tracking-open")) {
+        stopTrackingCamera();
+        return;
+      }
+
+      trackingVideoEl.srcObject = cameraStream;
+      await trackingVideoEl.play();
+      trackingVideoEl.classList.add("is-live");
+      if (trackingFallbackEl) trackingFallbackEl.classList.add("hidden");
+      trackingStatusEl.textContent = "Sizi Görüyor";
+      trackingStatusEl.style.color = "var(--success)";
+      if (trackingMotorEl) trackingMotorEl.textContent = "Aktif";
+    } catch (err) {
+      trackingVideoEl.classList.remove("is-live");
+      trackingStatusEl.textContent = "İzin Verilmedi";
+      trackingStatusEl.style.color = "#FF4560";
+      if (trackingMotorEl) trackingMotorEl.textContent = "Beklemede";
+      if (trackingFallbackEl) {
+        trackingFallbackEl.textContent = "Kamera izni verilmedi veya cihaz bulunamadı.";
+        trackingFallbackEl.classList.remove("hidden");
+      }
+    }
+  }
+
+  function stopTrackingCamera() {
+    if (cameraStream) {
+      cameraStream.getTracks().forEach((track) => track.stop());
+      cameraStream = null;
+    }
+    if (trackingVideoEl) {
+      trackingVideoEl.srcObject = null;
+      trackingVideoEl.classList.remove("is-live");
+    }
+    if (trackingFallbackEl) {
+      trackingFallbackEl.textContent = "Kamera kapalı";
+      trackingFallbackEl.classList.remove("hidden");
+    }
+    if (trackingStatusEl) {
+      trackingStatusEl.textContent = "Kapalı";
+      trackingStatusEl.style.color = "var(--subtext)";
+    }
+    if (trackingMotorEl) trackingMotorEl.textContent = "Hazır";
+  }
+
   if (trackingBtn && splitContainer) {
     trackingBtn.addEventListener("click", () => {
       const isOpen = splitContainer.classList.toggle("tracking-open");
@@ -160,6 +237,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const labelSpan = trackingBtn.querySelector(".tracking-label");
       if (labelSpan) {
         labelSpan.textContent = isOpen ? "Göz Teması Açık" : "Göz Teması";
+      }
+      if (isOpen) {
+        startTrackingCamera();
+      } else {
+        stopTrackingCamera();
       }
     });
   }
