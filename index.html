@@ -5,17 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Milo — Masanızdaki Canlı Dostunuz</title>
   <meta name="description" content="Milo ile tanışın. iPhone'unuzla hayat bulan, sizi gözleriyle takip eden, duygularıyla tepki veren ve gününüzü kolaylaştıran kişisel masaüstü robotunuz.">
-  <meta name="theme-color" content="#050508">
+  <meta name="theme-color" content="#000000">
   <link rel="icon" type="image/png" href="assets/milo-logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Ana içeriğe atla</a>
-
-  <div class="ambient-canvas" aria-hidden="true"></div>
 
   <header class="site-header">
     <div class="container nav-bar">
@@ -24,8 +22,8 @@
           src="assets/milo-logo.png"
           alt="Milo"
           class="brand-logo"
-          width="34"
-          height="34"
+          width="26"
+          height="26"
           fetchpriority="high"
         >
         <span class="brand-name">Milo</span>
@@ -35,59 +33,50 @@
         <ul class="nav-links">
           <li><a href="#deneyim">Deneyim</a></li>
           <li><a href="#diyalog">Birlikte Yaşamak</a></li>
-          <li><a href="#yetenekler">Gündelik Hayat</a></li>
-          <li><a href="#kurulum">Nasıl Çalışır?</a></li>
-          <li><a href="#sss">Merak Edilenler</a></li>
+          <li><a href="#yetenekler">Yetenekler</a></li>
+          <li><a href="#kurulum">Kurulum</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <button type="button" class="btn btn-glass btn-sm open-order-modal">
+        <button type="button" class="nav-text-btn open-order-modal">
           Kutu İçeriği
         </button>
-        <button type="button" class="btn btn-white btn-sm open-order-modal">
-          Milo’yu Keşfet
+        <button type="button" class="btn btn-nav open-order-modal">
+          Sipariş Et
         </button>
       </div>
     </div>
   </header>
 
   <main id="main-content">
-    <!-- CENTERED APPLE-STYLE HERO -->
+    <!-- CENTERED HERO -->
     <section class="hero">
       <div class="container">
         <div class="hero-intro">
-          <div class="hero-eyebrow">
-            <span class="eyebrow-spark" aria-hidden="true">✦</span>
-            <span>Milo ile Tanışın</span>
-          </div>
-
-          <h1>
-            Masanızın En Canlı <span class="gradient-text">Yeni Üyesi.</span>
-          </h1>
-
+          <p class="hero-kicker">Milo</p>
+          <h1>Masanızın en canlı üyesi.</h1>
           <p class="hero-lead">
-            iPhone’unuzu mıknatıslı gövdesine yerleştirin; Milo anında canlansın. Sizi gözleriyle takip eder, 9 farklı duyguyla gülümser, gördüklerini anlatır ve tek bir sözünüzle gününüzü organize eder.
+            iPhone’unuzu mıknatıslı gövdesine yerleştirin; Milo anında canlansın. Sizi gözleriyle takip eder, duygularıyla gülümser ve tek bir sözünüzle gününüzü kolaylaştırır.
           </p>
-
           <div class="hero-cta-row">
-            <a href="#diyalog" class="btn btn-primary">
-              Onunla Konuşmayı Dene
-            </a>
-            <button type="button" class="btn btn-glass open-order-modal">
+            <button type="button" class="btn btn-primary open-order-modal">
               Milo’yu Sipariş Et
             </button>
+            <a href="#diyalog" class="btn btn-secondary">
+              Onunla tanışın ›
+            </a>
           </div>
         </div>
 
-        <!-- CENTERPIECE MILO PRODUCT SHOWCASE -->
+        <!-- CENTERPIECE MILO PRODUCT STAGE -->
         <div class="product-showcase">
           <div class="milo-hardware-unit" role="region" aria-label="Canlı Milo Yüz Deneyimi">
             <div class="iphone-landscape-frame">
-              <div class="iphone-Notch" aria-hidden="true"></div>
+              <div class="iphone-notch" aria-hidden="true"></div>
 
               <div class="milo-screen" id="milo-screen" data-emotion="neutral">
-                <!-- Screen Top Bar -->
                 <div class="hud-top">
                   <div class="hud-controls">
                     <button
@@ -96,7 +85,10 @@
                       id="toggle-tracking-btn"
                       aria-pressed="false"
                     >
-                      <span aria-hidden="true">👁</span>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                      </svg>
                       <span class="tracking-label">Göz Teması</span>
                     </button>
                     <button
@@ -105,7 +97,11 @@
                       id="trigger-speak-btn"
                       aria-pressed="false"
                     >
-                      <span aria-hidden="true">🔊</span>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                      </svg>
                       <span>Sesini Dinle</span>
                     </button>
                   </div>
@@ -116,7 +112,6 @@
                   </div>
                 </div>
 
-                <!-- Face Canvas + Optional Eye Contact View -->
                 <div class="face-body-split" id="face-body-split">
                   <div class="milo-face-canvas">
                     <div class="eyes-row">
@@ -129,10 +124,10 @@
                   <div class="tracking-hud-panel" aria-label="Göz Teması ve Yüz Takibi">
                     <div class="tracking-meta">
                       <span>Göz Teması</span>
-                      <span style="color: var(--success);">● Sizi Görüyor</span>
+                      <span style="color: var(--success);">Sizi Görüyor</span>
                     </div>
                     <div class="tracking-reticle">
-                      <div class="reticle-box" aria-hidden="true">😊</div>
+                      <div class="reticle-box" aria-hidden="true"></div>
                     </div>
                     <div class="tracking-meta">
                       <span>Otomatik Dönüş</span>
@@ -141,7 +136,6 @@
                   </div>
                 </div>
 
-                <!-- Bottom Speech Bubble -->
                 <div class="hud-bottom">
                   <div class="ai-speech-bubble" id="ai-speech-bubble" aria-live="polite">
                     “Merhaba! Ben Milo. Bugün sana nasıl eşlik edebilirim?”
@@ -150,19 +144,17 @@
               </div>
             </div>
 
-            <!-- Motorized Dock Base Silhouette -->
             <div class="milo-body-neck" aria-hidden="true"></div>
             <div class="milo-body-base" aria-hidden="true">
               <div class="base-led-strip"></div>
             </div>
           </div>
 
-          <!-- Emotion Personality Switcher -->
           <div class="emotion-dock">
             <div class="emotion-dock-header">
-              <span>Milo’nun Ruh Halini Keşfedin — Bir ifadeye dokunun</span>
+              <span>Ruh halini seçin</span>
               <button type="button" id="toggle-autocycle-btn" class="hud-pill-btn">
-                ⏸ Duraklat
+                Duraklat
               </button>
             </div>
             <div class="emotion-buttons" role="group" aria-label="Milo'nun ruh halini seçin">
@@ -199,72 +191,83 @@
       </div>
     </section>
 
-    <!-- APPLE-STYLE EDITORIAL BENTO SECTION -->
-    <section class="section" id="deneyim">
+    <!-- EDITORIAL EXPERIENCE SECTION -->
+    <section class="section section-alt" id="deneyim">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow">Sıradan Bir Asistan Değil</span>
-          <h2>Sizi Görür, Hisseder ve Sizinle Hareket Eder.</h2>
+          <span class="eyebrow">Tasarım ve Karakter</span>
+          <h2>Sizi görür. Sizi anlar. Sizinle hareket eder.</h2>
           <p>
-            Soğuk ve ruhsuz hoparlörleri unutun. Milo, odada olduğunuzu fark eden, sevincinize ortak olan ve gözlerinizin içine bakan canlı bir karakterdir.
+            Soğuk ve ruhsuz masaüstü hoparlörlerini unutun. Milo, odada olduğunuzu fark eden, sevincinize ortak olan ve gözlerinizin içine bakan canlı bir karakterdir.
           </p>
         </div>
 
-        <div class="bento-grid">
-          <article class="glass-card bento-span-7 reveal-on-scroll">
+        <div class="feature-grid">
+          <article class="editorial-card span-7 reveal-on-scroll">
             <div>
-              <div class="card-icon-badge" aria-hidden="true">👀</div>
-              <h3>Gösterin, Anlatsın.</h3>
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <h3>Gösterin, anlatsın.</h3>
               <p>
                 Elinizdeki bir nesneyi, giymeyi düşündüğünüz kıyafeti veya merak ettiğiniz bir notu Milo’ya doğru tutmanız yeterli. Ne gördüğünü anında anlar, fikir verir ve sorularınızı doğal bir sohbetle yanıtlar.
               </p>
             </div>
-            <div class="card-quote">
-              <span aria-hidden="true">💬</span>
-              <span>“Milo, elimdeki kahve çekirdeği paketi hakkında ne düşünüyorsun?”</span>
-            </div>
+            <p class="card-example">“Milo, elimdeki kahve paketi hakkında ne düşünüyorsun?”</p>
           </article>
 
-          <article class="glass-card bento-span-5 reveal-on-scroll">
+          <article class="editorial-card span-5 reveal-on-scroll">
             <div>
-              <div class="card-icon-badge" aria-hidden="true">✨</div>
-              <h3>Her Zaman Göz Temasında.</h3>
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+              <h3>Her zaman göz temasında.</h3>
               <p>
-                Masanızda hareket ettiğinizde veya odada yürüdüğünüzde Milo sessizce size doğru döner. Konuşurken her zaman yüzünüze bakar; selfie çekmek istediğinizde ise sol gözü şık bir kamera lensine dönüşür.
+                Masanızda hareket ettiğinizde Milo sessizce size doğru döner. Konuşurken her zaman yüzünüze bakar; selfie çekmek istediğinizde sol gözü kamera lensine dönüşür.
               </p>
             </div>
-            <div class="card-quote">
-              <span aria-hidden="true">📸</span>
-              <span>“Milo, gülümsüyoruz, fotoğrafımızı çek!”</span>
-            </div>
+            <p class="card-example">“Milo, gülümsüyoruz, fotoğrafımızı çek.”</p>
           </article>
 
-          <article class="glass-card bento-span-4 reveal-on-scroll">
+          <article class="editorial-card span-4 reveal-on-scroll">
             <div>
-              <div class="card-icon-badge" aria-hidden="true">💛</div>
-              <h3>Sıcak Ses, Gerçek Mimikler.</h3>
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+              </svg>
+              <h3>Sıcak ses, gerçek mimikler.</h3>
               <p>
-                Robotik ve tekdüze sesler yerine kendi sevimli tonuyla konuşur. Heyecanlandığında yerinde kıpırdanır, dinlerken gözlerini kısar ve uyuduğunda nefes alır gibi dinlenir.
-              </p>
-            </div>
-          </article>
-
-          <article class="glass-card bento-span-4 reveal-on-scroll">
-            <div>
-              <div class="card-icon-badge" aria-hidden="true">🤫</div>
-              <h3>Gürültüde Bile Sizi Anlar.</h3>
-              <p>
-                Kalabalık bir ortamda özel bir isim veya e-posta adresi söylediğinizde emin olamazsa, ekranda zarif bir yazı alanı açarak tek dokunuşla onaylamanızı sağlar.
+                Tekdüze robotik sesler yerine kendi sevimli tonuyla konuşur. Heyecanlandığında kıpırdanır, uyuduğunda nefes alır gibi dinlenir.
               </p>
             </div>
           </article>
 
-          <article class="glass-card bento-span-4 reveal-on-scroll">
+          <article class="editorial-card span-4 reveal-on-scroll">
             <div>
-              <div class="card-icon-badge" aria-hidden="true">🔋</div>
-              <h3>Kendi Enerjisini Korur.</h3>
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <rect x="2" y="6" width="20" height="12" rx="2"/>
+                <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/>
+              </svg>
+              <h3>Gürültüde bile sizi anlar.</h3>
               <p>
-                Şarj seviyesini her an ekranda gösterir. Enerjisi azaldığında size sevimli bir şekilde haber verir ve pil sağlığını korumak için güvenli dinlenme moduna geçer.
+                Kalabalık bir ortamda özel bir isim veya e-posta adresi söylediğinizde emin olamazsa, ekranda zarif bir yazı alanı açarak kolayca tamamlamanızı sağlar.
+              </p>
+            </div>
+          </article>
+
+          <article class="editorial-card span-4 reveal-on-scroll">
+            <div>
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <rect x="1" y="6" width="18" height="12" rx="2"/>
+                <line x1="23" y1="13" x2="23" y2="11"/>
+                <path d="M7 10v4"/>
+              </svg>
+              <h3>Kendi enerjisini korur.</h3>
+              <p>
+                Şarj seviyesini her an ekranda gösterir. Enerjisi azaldığında size haber verir ve pil sağlığını korumak için güvenli dinlenme moduna geçer.
               </p>
             </div>
           </article>
@@ -272,14 +275,14 @@
       </div>
     </section>
 
-    <!-- INTERACTIVE LIFE MOMENTS SHOWCASE -->
+    <!-- INTERACTIVE LIFE MOMENTS -->
     <section class="section" id="diyalog">
       <div class="container">
         <div class="section-header">
           <span class="eyebrow">Birlikte Yaşamak</span>
-          <h2>Bir Cümle Söyleyin, Gerisini Milo’ya Bırakın.</h2>
+          <h2>Bir cümle söyleyin, gerisini Milo’ya bırakın.</h2>
           <p>
-            Gün içindeki doğal anlardan birine dokunun; Milo’nun size nasıl yanıt verdiğini ve nasıl tepki gösterdiğini görün.
+            Gün içindeki doğal anlardan birini seçin; Milo’nun size nasıl yanıt verdiğini ve nasıl tepki gösterdiğini görün.
           </p>
         </div>
 
@@ -287,11 +290,11 @@
           <div class="prompt-list" role="listbox" aria-label="Günlük yaşam senaryoları">
             <button type="button" class="prompt-btn" role="option" aria-selected="true">
               <span class="prompt-utterance">“Milo, sence bu iki gömlekten hangisini giymeliyim?”</span>
-              <span class="prompt-tag">Stil &amp; Görüş</span>
+              <span class="prompt-tag">Stil ve Görüş</span>
             </button>
             <button type="button" class="prompt-btn" role="option" aria-selected="false">
               <span class="prompt-utterance">“Yarın sabah 09:30’a dişçi randevusu ekle ve beni 08:00’de uyandır.”</span>
-              <span class="prompt-tag">Plan &amp; Alarm</span>
+              <span class="prompt-tag">Plan ve Alarm</span>
             </button>
             <button type="button" class="prompt-btn" role="option" aria-selected="false">
               <span class="prompt-utterance">“Anneme WhatsApp’tan ‘Yoldayım, 20 dakikaya oradayım’ diye mesaj at.”</span>
@@ -309,18 +312,18 @@
 
           <div class="experience-card" aria-live="polite">
             <div>
-              <span class="exp-moment-badge" id="exp-moment">✦ Görsel Farkındalık</span>
-              <p class="exp-reply-quote" id="exp-reply" style="margin-top: 22px;">
+              <span class="exp-moment-label" id="exp-moment">Görsel Farkındalık</span>
+              <p class="exp-reply-quote" id="exp-reply">
                 “Sol elindeki lacivert keten gömlek bugünkü güneşli havaya çok daha uygun! Üstelik gözlerinin rengini ortaya çıkarıyor.”
               </p>
             </div>
 
             <div class="exp-reactions">
-              <div class="exp-reaction-box">
+              <div>
                 <span class="exp-reaction-label">Yüz İfadesi</span>
-                <span class="exp-reaction-value" id="exp-face">Şaşkın &amp; Heyecanlı Bakış</span>
+                <span class="exp-reaction-value" id="exp-face">Şaşkın ve heyecanlı bakış</span>
               </div>
-              <div class="exp-reaction-box">
+              <div>
                 <span class="exp-reaction-label">Gövde Hareketi</span>
                 <span class="exp-reaction-value" id="exp-body">Sana doğru yaklaşır ve başını hafifçe eğer</span>
               </div>
@@ -330,131 +333,167 @@
       </div>
     </section>
 
-    <!-- EVERYDAY CAPABILITIES -->
-    <section class="section" id="yetenekler">
+    <!-- EVERYDAY CAPABILITIES — CLEAN TYPOGRAPHIC LIST -->
+    <section class="section section-alt" id="yetenekler">
       <div class="container">
         <div class="section-header">
           <span class="eyebrow">Gündelik Hayatınızla Uyumlu</span>
-          <h2>Telefonunuzdaki Her Şey, Artık Sesinizin Ucunda.</h2>
+          <h2>Telefonunuzdaki her şey, artık sesinizin ucunda.</h2>
           <p>
             Elleriniz doluyken veya çalışmaya odaklanmışken telefonunuzu elinize almanıza gerek yok. Milo tüm favori uygulamalarınızla uyum içinde çalışır.
           </p>
         </div>
 
-        <div class="cap-grid">
-          <div class="cap-item reveal-on-scroll">
-            <div class="cap-icon" style="background: rgba(56, 189, 248, 0.16);" aria-hidden="true">📷</div>
-            <h3>Anlık Kamera &amp; Selfie</h3>
-            <p>Elinizdekini görür, okur veya en güzel anlarınızı Polaroid tarzı hatıra fotoğrafı olarak çeker.</p>
+        <div class="cap-list">
+          <div class="cap-row reveal-on-scroll">
+            <svg class="cap-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+            <div>
+              <h3>Anlık Kamera ve Selfie</h3>
+              <p>Elinizdekini görür, okur veya en güzel anlarınızı hatıra fotoğrafı olarak çeker.</p>
+            </div>
           </div>
 
-          <div class="cap-item reveal-on-scroll">
-            <div class="cap-icon" style="background: rgba(255, 84, 84, 0.16);" aria-hidden="true">📅</div>
-            <h3>Takvim &amp; Randevular</h3>
-            <p>Günlük planınızı özetler ve yeni toplantılarınızı hatırlatmasıyla birlikte takviminize işler.</p>
+          <div class="cap-row reveal-on-scroll">
+            <svg class="cap-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <div>
+              <h3>Takvim ve Randevular</h3>
+              <p>Günlük planınızı özetler ve yeni toplantılarınızı hatırlatmasıyla birlikte takviminize işler.</p>
+            </div>
           </div>
 
-          <div class="cap-item reveal-on-scroll">
-            <div class="cap-icon" style="background: rgba(255, 191, 51, 0.16);" aria-hidden="true">⏰</div>
-            <h3>Alarmlar &amp; Sayaçlar</h3>
-            <p>Sabah uyanma alarmınızı veya mutfaktaki kahve zamanlayıcınızı saniyeler içinde kurar.</p>
+          <div class="cap-row reveal-on-scroll">
+            <svg class="cap-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3L2 6M22 6l-3-3"/>
+            </svg>
+            <div>
+              <h3>Alarmlar ve Sayaçlar</h3>
+              <p>Sabah uyanma alarmınızı veya mutfaktaki kahve zamanlayıcınızı saniyeler içinde kurar.</p>
+            </div>
           </div>
 
-          <div class="cap-item reveal-on-scroll">
-            <div class="cap-icon" style="background: rgba(77, 217, 115, 0.16);" aria-hidden="true">💬</div>
-            <h3>WhatsApp &amp; Mesajlar</h3>
-            <p>Sevdiklerinize göndermek istediğiniz mesajları hazırlar, tek onayınızla anında iletir.</p>
+          <div class="cap-row reveal-on-scroll">
+            <svg class="cap-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            <div>
+              <h3>WhatsApp ve Mesajlar</h3>
+              <p>Sevdiklerinize göndermek istediğiniz mesajları hazırlar, tek onayınızla anında iletir.</p>
+            </div>
           </div>
 
-          <div class="cap-item reveal-on-scroll">
-            <div class="cap-icon" style="background: rgba(64, 217, 102, 0.16);" aria-hidden="true">📞</div>
-            <h3>Hızlı Aramalar</h3>
-            <p>“Annemi ara” dediğinizde rehberden doğru kişiyi bulur ve aramayı hemen başlatır.</p>
+          <div class="cap-row reveal-on-scroll">
+            <svg class="cap-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <div>
+              <h3>Hızlı Aramalar</h3>
+              <p>“Annemi ara” dediğinizde rehberden doğru kişiyi bulur ve aramayı hemen başlatır.</p>
+            </div>
           </div>
 
-          <div class="cap-item reveal-on-scroll">
-            <div class="cap-icon" style="background: rgba(255, 158, 51, 0.16);" aria-hidden="true">☑️</div>
-            <h3>Yapılacaklar Listesi</h3>
-            <p>Aklınıza gelen fikirleri ve alışveriş listesini unutmadan anımsatıcılarınıza ekler.</p>
+          <div class="cap-row reveal-on-scroll">
+            <svg class="cap-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+            <div>
+              <h3>Yapılacaklar Listesi</h3>
+              <p>Aklınıza gelen fikirleri ve alışveriş listesini unutmadan anımsatıcılarınıza ekler.</p>
+            </div>
           </div>
 
-          <div class="cap-item reveal-on-scroll">
-            <div class="cap-icon" style="background: rgba(158, 140, 122, 0.2);" aria-hidden="true">🎂</div>
-            <h3>Doğum Günü Hatırlatma</h3>
-            <p>Rehberinizdeki arkadaşlarınızın yaklaşan doğum günlerini önceden size haber verir.</p>
+          <div class="cap-row reveal-on-scroll">
+            <svg class="cap-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+            <div>
+              <h3>Doğum Günü Hatırlatma</h3>
+              <p>Rehberinizdeki arkadaşlarınızın yaklaşan doğum günlerini önceden size haber verir.</p>
+            </div>
           </div>
 
-          <div class="cap-item reveal-on-scroll">
-            <div class="cap-icon" style="background: rgba(64, 153, 255, 0.16);" aria-hidden="true">⛅</div>
-            <h3>Hava &amp; Yol Durumu</h3>
-            <p>Evden çıkmadan önce hava tahminini söyler ve gideceğiniz yerin rotasını haritada açar.</p>
+          <div class="cap-row reveal-on-scroll">
+            <svg class="cap-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <div>
+              <h3>Hava Durumu ve Yol Tarifi</h3>
+              <p>Evden çıkmadan önce hava tahminini söyler ve gideceğiniz yerin rotasını haritada açar.</p>
+            </div>
           </div>
 
-          <div class="cap-item reveal-on-scroll">
-            <div class="cap-icon" style="background: rgba(115, 230, 89, 0.16);" aria-hidden="true">🚶</div>
-            <h3>Günlük Hareket &amp; Adım</h3>
-            <p>Gün içinde kaç adım attığınızı ve ne kadar aktif kaldığınızı sizinle paylaşır.</p>
+          <div class="cap-row reveal-on-scroll">
+            <svg class="cap-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+            <div>
+              <h3>Günlük Hareket ve Adım</h3>
+              <p>Gün içinde kaç adım attığınızı ve ne kadar aktif kaldığınızı sizinle paylaşır.</p>
+            </div>
           </div>
 
-          <div class="cap-item reveal-on-scroll">
-            <div class="cap-icon" style="background: rgba(123, 97, 255, 0.18);" aria-hidden="true">✉️</div>
-            <h3>E-Posta &amp; Bulut Albümü</h3>
-            <p>Yeni gelen önemli e-postalarınızı sesli okur, çektiği fotoğrafları bulut hesabınıza yedekler.</p>
+          <div class="cap-row reveal-on-scroll">
+            <svg class="cap-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <div>
+              <h3>E-Posta ve Bulut Albümü</h3>
+              <p>Yeni gelen önemli e-postalarınızı sesli okur, çektiği fotoğrafları bulut hesabınıza yedekler.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 3-STEP EFFORTLESS SETUP -->
+    <!-- 3-STEP SETUP -->
     <section class="section" id="kurulum">
       <div class="container">
         <div class="section-header">
           <span class="eyebrow">Zahmetsiz Başlangıç</span>
-          <h2>Saniyeler İçinde Hazır.</h2>
+          <h2>Saniyeler içinde hazır.</h2>
           <p>Karmaşık kablolar veya kurulumlar yok. Kutudan çıkarın ve hemen tanışın.</p>
         </div>
 
         <div class="steps-grid">
-          <article class="glass-card reveal-on-scroll">
-            <div>
-              <span class="step-number">1. Adım</span>
-              <h3>Yerleştirin</h3>
-              <p>
-                iPhone’unuzu Milo’nun dengeli standına yatay olarak bırakın. Cihazınız anında tam ekran yüz moduna geçer.
-              </p>
-            </div>
-          </article>
+          <div class="step-col reveal-on-scroll">
+            <span class="step-num">01</span>
+            <h3>Yerleştirin</h3>
+            <p>
+              iPhone’unuzu Milo’nun dengeli standına yatay olarak bırakın. Cihazınız anında tam ekran yüz moduna geçer.
+            </p>
+          </div>
 
-          <article class="glass-card reveal-on-scroll">
-            <div>
-              <span class="step-number">2. Adım</span>
-              <h3>Eşleştirin</h3>
-              <p>
-                Milo uygulaması evinizin kablosuz ağını otomatik bulur ve tek dokunuşla gövdeyle bağlantıyı kurar.
-              </p>
-            </div>
-          </article>
+          <div class="step-col reveal-on-scroll">
+            <span class="step-num">02</span>
+            <h3>Eşleştirin</h3>
+            <p>
+              Milo uygulaması evinizin kablosuz ağını otomatik bulur ve tek dokunuşla gövdeyle bağlantıyı kurar.
+            </p>
+          </div>
 
-          <article class="glass-card reveal-on-scroll">
-            <div>
-              <span class="step-number">3. Adım</span>
-              <h3>Merhaba Deyin</h3>
-              <p>
-                “Merhaba Milo” diyerek sohbeti başlatın. Artık masanızda sizi tanıyan ve dinleyen bir dostunuz var.
-              </p>
-            </div>
-          </article>
+          <div class="step-col reveal-on-scroll">
+            <span class="step-num">03</span>
+            <h3>Merhaba Deyin</h3>
+            <p>
+              “Merhaba Milo” diyerek sohbeti başlatın. Artık masanızda sizi tanıyan ve dinleyen bir dostunuz var.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ SECTION -->
-    <section class="section" id="sss" aria-labelledby="faq-heading">
+    <!-- FAQ -->
+    <section class="section section-alt" id="sss" aria-labelledby="faq-heading">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header centered">
           <span class="eyebrow">Merak Edilenler</span>
-          <h2 id="faq-heading">Sıkça Sorulan Sorular</h2>
-          <p>Milo ile günlük yaşam ve gizliliğiniz hakkında bilmeniz gereken her şey.</p>
+          <h2 id="faq-heading">Sıkça sorulan sorular.</h2>
         </div>
 
         <div class="faq-container">
@@ -498,62 +537,56 @@
     </section>
 
     <!-- CLOSING CALLOUT -->
-    <section class="section">
+    <section class="closing-section">
       <div class="container">
-        <div class="closing-banner reveal-on-scroll">
-          <h2>Masanızda Yeni Bir Hayat Başlıyor.</h2>
-          <p>
-            Sizi dinleyen, gülümseyen ve her gününüzü daha keyifli hale getiren Milo ile hemen tanışın.
-          </p>
-          <div class="hero-cta-row">
-            <button type="button" class="btn btn-white open-order-modal">
-              Milo’yu Sipariş Et
-            </button>
-            <a href="#main-content" class="btn btn-glass">
-              Canlı Yüzü Tekrar Dene
-            </a>
-          </div>
+        <h2>Masanızda yeni bir hayat başlıyor.</h2>
+        <p>
+          Sizi dinleyen, gülümseyen ve her gününüzü daha keyifli hale getiren Milo ile hemen tanışın.
+        </p>
+        <div class="hero-cta-row">
+          <button type="button" class="btn btn-primary open-order-modal">
+            Milo’yu Sipariş Et
+          </button>
+          <a href="#main-content" class="btn btn-secondary">
+            Yukarı dön ›
+          </a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Native Modal Dialog for Box Contents / Order -->
   <dialog id="order-dialog" class="milo-modal" closedby="any" aria-labelledby="modal-title">
     <form method="dialog">
       <div class="modal-header">
-        <h2 id="modal-title" style="font-size: 1.35rem; font-weight: 800;">Milo Kutu İçeriği</h2>
+        <h2 id="modal-title" style="font-size: 1.25rem; font-weight: 700;">Milo Kutu İçeriği</h2>
         <button value="close" class="modal-close" aria-label="Pencereyi kapat">✕</button>
       </div>
-      <p style="color: var(--subtext); font-size: 0.95rem; margin-bottom: 18px;">
-        Milo, kutudan çıktığı andan itibaren iPhone’unuzla buluşmaya hazırdır:
+      <p style="color: var(--subtext); font-size: 0.92rem; margin-bottom: 18px;">
+        Milo, kutudan çıktığı andan itibaren iPhone’unuzla buluşmaya hazırdır.
       </p>
-      <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; font-size: 0.94rem;">
-        <li style="padding: 14px; border-radius: 16px; background: rgba(255,255,255,0.04); border: 1px solid var(--border);">
-          <strong style="color: #fff;">• Milo Hareketli Robot Gövdesi</strong>
-          <p style="color: var(--subtext); font-size: 0.84rem; margin-top: 2px;">360° sessiz dönüş, aktif denge freni ve dahili şarj edilebilir batarya.</p>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; font-size: 0.9rem;">
+        <li style="padding: 14px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle);">
+          <strong style="color: #fff;">Milo Hareketli Robot Gövdesi</strong>
+          <p style="color: var(--subtext); font-size: 0.82rem; margin-top: 2px;">360° sessiz dönüş, aktif denge freni ve dahili şarj edilebilir batarya.</p>
         </li>
-        <li style="padding: 14px; border-radius: 16px; background: rgba(255,255,255,0.04); border: 1px solid var(--border);">
-          <strong style="color: #fff;">• Milo iOS Uygulaması (App Store)</strong>
-          <p style="color: var(--subtext); font-size: 0.84rem; margin-top: 2px;">9 canlı duygu modu, göz teması takibi ve tüm telefon yetenekleri.</p>
+        <li style="padding: 14px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle);">
+          <strong style="color: #fff;">Milo iOS Uygulaması</strong>
+          <p style="color: var(--subtext); font-size: 0.82rem; margin-top: 2px;">9 canlı duygu modu, göz teması takibi ve tüm telefon yetenekleri.</p>
         </li>
-        <li style="padding: 14px; border-radius: 16px; background: rgba(255,255,255,0.04); border: 1px solid var(--border);">
-          <strong style="color: #fff;">• Güç &amp; Şarj Kablosu + Hızlı Başlangıç Rehberi</strong>
-          <p style="color: var(--subtext); font-size: 0.84rem; margin-top: 2px;">1 dakikada kablosuz ağ eşleştirmesi için adım adım kılavuz.</p>
+        <li style="padding: 14px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle);">
+          <strong style="color: #fff;">Şarj Kablosu ve Başlangıç Rehberi</strong>
+          <p style="color: var(--subtext); font-size: 0.82rem; margin-top: 2px;">Saniyeler içinde kablosuz ağ eşleştirmesi için hızlı kılavuz.</p>
         </li>
       </ul>
-      <button value="ok" class="btn btn-primary" style="width: 100%;">Harika, Anladım</button>
+      <button value="ok" class="btn btn-primary" style="width: 100%;">Tamam</button>
     </form>
   </dialog>
 
   <footer class="site-footer">
     <div class="container footer-row">
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <img src="assets/milo-logo.png" alt="" width="32" height="32" loading="lazy" style="border-radius: 8px;">
-        <div>
-          <strong style="font-size: 0.98rem;">Milo</strong>
-          <p class="footer-copy">Masanızdaki Canlı Dostunuz.</p>
-        </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="assets/milo-logo.png" alt="" width="24" height="24" loading="lazy" style="border-radius: 6px;">
+        <span style="font-size: 0.9rem; font-weight: 600;">Milo</span>
       </div>
 
       <p class="footer-copy">

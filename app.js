@@ -5,63 +5,63 @@ const EMOTIONS = {
     title: "Sakin",
     primary: "#72DDF7",
     secondary: "#A7F3FF",
-    glow: "rgba(114, 221, 247, 0.30)",
+    glow: "rgba(114, 221, 247, 0.24)",
     speech: "“Merhaba! Ben Milo. Bugün sana nasıl eşlik edebilirim?”"
   },
   veryHappy: {
     title: "Çok Mutlu",
     primary: "#FFE66D",
     secondary: "#FF9F1C",
-    glow: "rgba(255, 230, 109, 0.32)",
+    glow: "rgba(255, 230, 109, 0.24)",
     speech: "“Yaşasın! Bugünkü tüm işlerini bitirdik, kutlama zamanı!”"
   },
   happy: {
     title: "Mutlu",
     primary: "#00D4AA",
     secondary: "#55E6C1",
-    glow: "rgba(0, 212, 170, 0.30)",
+    glow: "rgba(0, 212, 170, 0.24)",
     speech: "“Sabah kahven hazır görünüyorsa günün planını anlatmaya başlıyorum.”"
   },
   listening: {
     title: "Seni Dinliyor",
     primary: "#7AFBFF",
     secondary: "#00D4AA",
-    glow: "rgba(122, 251, 255, 0.34)",
+    glow: "rgba(122, 251, 255, 0.26)",
     speech: "“Seni dinliyorum... İstediğin her şeyi bana sorabilirsin.”"
   },
   thoughtful: {
     title: "Meraklı",
     primary: "#B794F4",
     secondary: "#7B61FF",
-    glow: "rgba(183, 148, 244, 0.32)",
+    glow: "rgba(183, 148, 244, 0.24)",
     speech: "“Hmm, elindeki kitabı inceliyorum... Kapak tasarımı harikaymış.”"
   },
   surprised: {
     title: "Şaşkın",
     primary: "#FFB800",
     secondary: "#FFD166",
-    glow: "rgba(255, 184, 0, 0.32)",
+    glow: "rgba(255, 184, 0, 0.24)",
     speech: "“Vay canına! Yeni saç stilin sana çok yakışmış!”"
   },
   sad: {
     title: "Duygusal",
     primary: "#5B8FF9",
     secondary: "#9EC5FF",
-    glow: "rgba(91, 143, 249, 0.28)",
+    glow: "rgba(91, 143, 249, 0.22)",
     speech: "“Bugün dışarıda sağanak yağmur var, çıkarken şemsiyeni unutma olur mu?”"
   },
   angry: {
     title: "Huysuz",
     primary: "#FF4560",
     secondary: "#FF7A59",
-    glow: "rgba(255, 69, 96, 0.30)",
+    glow: "rgba(255, 69, 96, 0.24)",
     speech: "“Hey! Enerjim bitmek üzere, beni şarja takmayı unuttun!”"
   },
   sleeping: {
     title: "Uykuda",
     primary: "#3A4A6B",
     secondary: "#1A2340",
-    glow: "rgba(58, 74, 107, 0.24)",
+    glow: "rgba(58, 74, 107, 0.18)",
     speech: "“Zzz... İyi geceler. Sabah alarmında görüşürüz.”"
   }
 };
@@ -71,7 +71,7 @@ const LIFE_MOMENTS = [
     moment: "Görsel Farkındalık",
     utterance: "“Milo, sence bu iki gömlekten hangisini giymeliyim?”",
     emotion: "surprised",
-    faceReaction: "Şaşkın & Heyecanlı Bakış",
+    faceReaction: "Şaşkın ve heyecanlı bakış",
     bodyMovement: "Sana doğru yaklaşır ve başını hafifçe eğer",
     reply: "“Sol elindeki lacivert keten gömlek bugünkü güneşli havaya çok daha uygun! Üstelik gözlerinin rengini ortaya çıkarıyor.”"
   },
@@ -79,7 +79,7 @@ const LIFE_MOMENTS = [
     moment: "Günlük Planlama",
     utterance: "“Yarın sabah 09:30’a dişçi randevusu ekle ve beni 08:00’de uyandır.”",
     emotion: "happy",
-    faceReaction: "Sıcak Gülümseme",
+    faceReaction: "Sıcak gülümseme",
     bodyMovement: "Onaylamak için neşeyle sağa-sola sallanır",
     reply: "“Tamamdır! Yarın 09:30 dişçi randevunu takvimine işledim, 15 dakika öncesine hatırlatıcı koydum ve sabah 08:00 alarmını kurdum.”"
   },
@@ -87,7 +87,7 @@ const LIFE_MOMENTS = [
     moment: "Hızlı İletişim",
     utterance: "“Anneme WhatsApp’tan ‘Yoldayım, 20 dakikaya oradayım’ diye mesaj at.”",
     emotion: "veryHappy",
-    faceReaction: "Çok Mutlu & Neşeli",
+    faceReaction: "Çok mutlu ve neşeli",
     bodyMovement: "Küçük bir sevinç dönüşü yapar",
     reply: "“Rehberinden anneni buldum ve WhatsApp mesajını hazırladım. Ekrana dokunup hemen gönderebilirsin!”"
   },
@@ -95,7 +95,7 @@ const LIFE_MOMENTS = [
     moment: "Anı Yakalama",
     utterance: "“Milo, bizi çek! Gülümseyince fotoğrafımızı kaydet.”",
     emotion: "listening",
-    faceReaction: "Sol Gözü Kamera Lensine Dönüşür",
+    faceReaction: "Sol gözü kamera lensine dönüşür",
     bodyMovement: "En iyi açı için kadrajı ortalar",
     reply: "“Harika görünüyorsunuz! 3... 2... 1... Çektim! Fotoğrafınızı hem galerine hem de bulut albümüne kaydettim.”"
   },
@@ -103,7 +103,7 @@ const LIFE_MOMENTS = [
     moment: "Masaüstü Arkadaşlığı",
     utterance: "“Çok yorucu bir gündü Milo, bana biraz moral ver.”",
     emotion: "thoughtful",
-    faceReaction: "Şefkatli & Meraklı Gözler",
+    faceReaction: "Şefkatli ve meraklı gözler",
     bodyMovement: "Yavaşça yanına sokulur",
     reply: "“Bugün gerçekten çok çalıştın. Şimdi arkana yaslanıp derin bir nefes alma sırası sende. İstersen çalışma masanın ışığını biraz kısayım?”"
   }
@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateAutoCycleButton() {
     if (!autoCycleBtn) return;
-    autoCycleBtn.textContent = isAutoCycling ? "⏸ Duraklat" : "▶ Oynat";
+    autoCycleBtn.textContent = isAutoCycling ? "Duraklat" : "Oynat";
   }
 
   if (autoCycleBtn) {
@@ -234,7 +234,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startAutoCycle();
 
-  // Life Moments Selector
   const promptButtons = document.querySelectorAll(".prompt-btn");
   const expMoment = document.getElementById("exp-moment");
   const expReply = document.getElementById("exp-reply");
@@ -249,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
       b.setAttribute("aria-selected", idx === index ? "true" : "false");
     });
 
-    if (expMoment) expMoment.textContent = `✦ ${item.moment}`;
+    if (expMoment) expMoment.textContent = item.moment;
     if (expReply) expReply.textContent = item.reply;
     if (expFace) expFace.textContent = item.faceReaction;
     if (expBody) expBody.textContent = item.bodyMovement;
@@ -262,7 +261,6 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => renderMoment(idx));
   });
 
-  // Box Contents / Order Modal
   const openModalBtns = document.querySelectorAll(".open-order-modal");
   const orderDialog = document.getElementById("order-dialog");
   if (orderDialog) {
