@@ -1,141 +1,111 @@
-// Milo the Robot — Interactive Face Engine & Gemini Command Simulator
+// Milo — Consumer Product Experience & Live Personality Engine
 
 const EMOTIONS = {
   neutral: {
-    title: "Normal",
+    title: "Sakin",
     primary: "#72DDF7",
     secondary: "#A7F3FF",
     glow: "rgba(114, 221, 247, 0.30)",
-    speech: "Merhaba! Ben Milo. Masaüstünde seni dinliyor ve etrafı takip ediyorum.",
-    state: "DİNLİYOR • GEMINI 2.5 FLASH"
+    speech: "“Merhaba! Ben Milo. Bugün sana nasıl eşlik edebilirim?”"
   },
   veryHappy: {
-    title: "Çok mutlu",
+    title: "Çok Mutlu",
     primary: "#FFE66D",
     secondary: "#FF9F1C",
     glow: "rgba(255, 230, 109, 0.32)",
-    speech: "Harika bir haber! Bugün tüm görevlerini tamamladık, kutlama dansı yapıyorum!",
-    state: "MOTOR: DANS • NEŞELİ"
+    speech: "“Yaşasın! Bugünkü tüm işlerini bitirdik, kutlama zamanı!”"
   },
   happy: {
     title: "Mutlu",
     primary: "#00D4AA",
     secondary: "#55E6C1",
     glow: "rgba(0, 212, 170, 0.30)",
-    speech: "Toplantın saat 14:30'da takvime eklendi ve hatırlatıcın kuruldu.",
-    state: "TAKVİM GÜNCELLENDİ"
+    speech: "“Sabah kahven hazır görünüyorsa günün planını anlatmaya başlıyorum.”"
   },
   listening: {
-    title: "Dinliyor",
+    title: "Seni Dinliyor",
     primary: "#7AFBFF",
     secondary: "#00D4AA",
     glow: "rgba(122, 251, 255, 0.34)",
-    speech: "Seni dinliyorum... 'Elimde ne var?' veya 'Anneme mesaj at' diyebilirsin.",
-    state: "MİKROFON AKTİF • TÜRKÇE ASR"
+    speech: "“Seni dinliyorum... İstediğin her şeyi bana sorabilirsin.”"
   },
   thoughtful: {
-    title: "Düşünceli",
+    title: "Meraklı",
     primary: "#B794F4",
     secondary: "#7B61FF",
     glow: "rgba(183, 148, 244, 0.32)",
-    speech: "Kameradan elindeki nesneyi ve Google Drive notlarını karşılaştırıyorum...",
-    state: "DÜŞÜNÜYOR • MULTIMODAL ANALİZ"
+    speech: "“Hmm, elindeki kitabı inceliyorum... Kapak tasarımı harikaymış.”"
   },
   surprised: {
-    title: "Şaşırmış",
+    title: "Şaşkın",
     primary: "#FFB800",
     secondary: "#FFD166",
     glow: "rgba(255, 184, 0, 0.32)",
-    speech: "Vay canına! Elinde yeni bir ESP32 prototip kartı tutuyorsun!",
-    state: "GÖRSEL TESPİT • KAMERA AKTİF"
+    speech: "“Vay canına! Yeni saç stilin sana çok yakışmış!”"
   },
   sad: {
-    title: "Üzgün",
+    title: "Duygusal",
     primary: "#5B8FF9",
     secondary: "#9EC5FF",
     glow: "rgba(91, 143, 249, 0.28)",
-    speech: "Dışarıda sağanak yağmur başlıyor, şemsiyeni almayı unutma lütfen.",
-    state: "HAVA DURUMU UYARISI"
+    speech: "“Bugün dışarıda sağanak yağmur var, çıkarken şemsiyeni unutma olur mu?”"
   },
   angry: {
-    title: "Kızgın",
+    title: "Huysuz",
     primary: "#FF4560",
     secondary: "#FF7A59",
     glow: "rgba(255, 69, 96, 0.30)",
-    speech: "Pil seviyem kritik sınıra yaklaşıyor! Beni şarja takmazsan kilitleneceğim.",
-    state: "VOLTAJ KORUMA UYARISI"
+    speech: "“Hey! Enerjim bitmek üzere, beni şarja takmayı unuttun!”"
   },
   sleeping: {
-    title: "Uyuyor",
+    title: "Uykuda",
     primary: "#3A4A6B",
     secondary: "#1A2340",
     glow: "rgba(58, 74, 107, 0.24)",
-    speech: "Zzz... Uyku modundayım. Uyandırmak için ekrana dokun veya seslen.",
-    state: "UYKU MODU • DÜŞÜK GÜÇ"
+    speech: "“Zzz... İyi geceler. Sabah alarmında görüşürüz.”"
   }
 };
 
-const COMMAND_SCENARIOS = [
+const LIFE_MOMENTS = [
   {
-    id: "vision",
-    utterance: "“Milo, şu an elimde ne var? Bakıp anlatır mısın?”",
-    tag: "analyzeCamera",
-    toolCall: 'analyzeCamera(question: "Elimde ne var?")',
+    moment: "Görsel Farkındalık",
+    utterance: "“Milo, sence bu iki gömlekten hangisini giymeliyim?”",
     emotion: "surprised",
-    motorSteps: [
-      { cmd: "STOP (S)", ms: 100 },
-      { cmd: "FORWARD (F)", ms: 260 }
-    ],
-    response: "Kameradan baktım! Elinde siyah kılıflı bir AirPods kutusu ve yanında kahve kupası tutuyorsun."
+    faceReaction: "Şaşkın & Heyecanlı Bakış",
+    bodyMovement: "Sana doğru yaklaşır ve başını hafifçe eğer",
+    reply: "“Sol elindeki lacivert keten gömlek bugünkü güneşli havaya çok daha uygun! Üstelik gözlerinin rengini ortaya çıkarıyor.”"
   },
   {
-    id: "calendar",
-    utterance: "“Yarın sabah 10:00’a Ürün Lansmanı toplantısı ekle ve 08:30’a alarm kur.”",
-    tag: "Calendar + AlarmKit",
-    toolCall: 'createCalendarEvent(title: "Ürün Lansmanı", startDate: "2026-11-15T10:00") + setAlarm(time: "08:30")',
+    moment: "Günlük Planlama",
+    utterance: "“Yarın sabah 09:30’a dişçi randevusu ekle ve beni 08:00’de uyandır.”",
     emotion: "happy",
-    motorSteps: [
-      { cmd: "LEFT (L)", ms: 220 },
-      { cmd: "RIGHT (R)", ms: 220 }
-    ],
-    response: "Yarın 10:00 için 'Ürün Lansmanı' takvime eklendi (15 dk önce bildirimli) ve 08:30 Milo alarmın kuruldu!"
+    faceReaction: "Sıcak Gülümseme",
+    bodyMovement: "Onaylamak için neşeyle sağa-sola sallanır",
+    reply: "“Tamamdır! Yarın 09:30 dişçi randevunu takvimine işledim, 15 dakika öncesine hatırlatıcı koydum ve sabah 08:00 alarmını kurdum.”"
   },
   {
-    id: "whatsapp",
-    utterance: "“Ahmet’e WhatsApp’tan ‘Robotiğin yeni yüzü Milo hazır!’ diye mesaj yaz.”",
-    tag: "Contacts + WhatsApp",
-    toolCall: 'searchContacts(query: "Ahmet") → sendWhatsAppMessage(contactOrNumber: "Ahmet", message: "Robotiğin yeni yüzü Milo hazır!")',
+    moment: "Hızlı İletişim",
+    utterance: "“Anneme WhatsApp’tan ‘Yoldayım, 20 dakikaya oradayım’ diye mesaj at.”",
     emotion: "veryHappy",
-    motorSteps: [
-      { cmd: "FORWARD (F)", ms: 320 },
-      { cmd: "LEFT (L)", ms: 180 },
-      { cmd: "RIGHT (R)", ms: 180 }
-    ],
-    response: "Rehberde Ahmet Yılmaz'ı buldum. WhatsApp sohbetini mesaj taslağın hazır olarak açtım, tek dokunuşla gönderebilirsin."
+    faceReaction: "Çok Mutlu & Neşeli",
+    bodyMovement: "Küçük bir sevinç dönüşü yapar",
+    reply: "“Rehberinden anneni buldum ve WhatsApp mesajını hazırladım. Ekrana dokunup hemen gönderebilirsin!”"
   },
   {
-    id: "workspace",
-    utterance: "“Son gelen önemli e-postamı özetle ve selfie çekip Google Drive’a kaydet.”",
-    tag: "Gmail + Drive",
-    toolCall: 'listUnreadEmails(limit: 1) + takePhotoAndUploadToDrive(folder: "Milo Selfies")',
+    moment: "Anı Yakalama",
+    utterance: "“Milo, bizi çek! Gülümseyince fotoğrafımızı kaydet.”",
     emotion: "listening",
-    motorSteps: [
-      { cmd: "BACKWARD (B)", ms: 240 },
-      { cmd: "STOP (S)", ms: 120 }
-    ],
-    response: "Sol gözümü kamera lensine dönüştürdüm, 3-2-1 çektim! Fotoğrafın galeriye ve Google Drive'a yüklendi."
+    faceReaction: "Sol Gözü Kamera Lensine Dönüşür",
+    bodyMovement: "En iyi açı için kadrajı ortalar",
+    reply: "“Harika görünüyorsunuz! 3... 2... 1... Çektim! Fotoğrafınızı hem galerine hem de bulut albümüne kaydettim.”"
   },
   {
-    id: "netgsm",
-    utterance: "“Ekibe Netgsm üzerinden ‘Milo sunucusu aktif’ SMS’i gönder ve feneri aç.”",
-    tag: "Netgsm + Cihaz",
-    toolCall: 'sendNetgsmSMS(group: "Ekip", text: "Milo sunucusu aktif") + setFlashlight(on: true)',
+    moment: "Masaüstü Arkadaşlığı",
+    utterance: "“Çok yorucu bir gündü Milo, bana biraz moral ver.”",
     emotion: "thoughtful",
-    motorSteps: [
-      { cmd: "RIGHT (R)", ms: 300 },
-      { cmd: "LEFT (L)", ms: 300 }
-    ],
-    response: "iPhone'un flaş fenerini açtım ve Netgsm bulut entegrasyonuyla ekip numaralarına bilgilendirme SMS'ini ilettim."
+    faceReaction: "Şefkatli & Meraklı Gözler",
+    bodyMovement: "Yavaşça yanına sokulur",
+    reply: "“Bugün gerçekten çok çalıştın. Şimdi arkana yaslanıp derin bir nefes alma sırası sende. İstersen çalışma masanın ışığını biraz kısayım?”"
   }
 ];
 
@@ -144,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const screenEl = document.getElementById("milo-screen");
   const emoTitleEl = document.getElementById("hud-emotion-title");
   const speechBubbleEl = document.getElementById("ai-speech-bubble");
-  const stateCapsuleEl = document.getElementById("hud-state-text");
   const leftEye = document.getElementById("eye-left");
   const rightEye = document.getElementById("eye-right");
   const mouthEl = document.getElementById("milo-mouth");
@@ -163,7 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!data) return;
     currentEmotionKey = key;
 
-    // Update CSS Custom Properties dynamically on :root and screen
     root.style.setProperty("--emo-primary", data.primary);
     root.style.setProperty("--emo-secondary", data.secondary);
     root.style.setProperty("--emo-glow", data.glow);
@@ -171,7 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
     screenEl.setAttribute("data-emotion", key);
     emoTitleEl.textContent = data.title;
     speechBubbleEl.textContent = data.speech;
-    stateCapsuleEl.textContent = data.state;
 
     emoButtons.forEach((btn) => {
       const active = btn.dataset.emotion === key;
@@ -179,7 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Emotion switcher click handlers
   emoButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       stopAutoCycle();
@@ -187,23 +153,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Toggle ARKit Eye Tracking split panel
   if (trackingBtn && splitContainer) {
     trackingBtn.addEventListener("click", () => {
       const isOpen = splitContainer.classList.toggle("tracking-open");
       trackingBtn.setAttribute("aria-pressed", isOpen ? "true" : "false");
       const labelSpan = trackingBtn.querySelector(".tracking-label");
       if (labelSpan) {
-        labelSpan.textContent = isOpen ? "TAKİP AÇIK" : "TAKİP";
+        labelSpan.textContent = isOpen ? "Göz Teması Açık" : "Göz Teması";
       }
     });
   }
 
-  // Cute Robot Voice / Mouth animation simulation
   if (speakBtn && mouthEl) {
     speakBtn.addEventListener("click", () => {
       speakBtn.setAttribute("aria-pressed", "true");
-      stateCapsuleEl.textContent = "KONUŞUYOR • DSP SES SENTEZİ";
       let ticks = 0;
       const interval = setInterval(() => {
         mouthEl.classList.toggle("speaking");
@@ -212,13 +175,11 @@ document.addEventListener("DOMContentLoaded", () => {
           clearInterval(interval);
           mouthEl.classList.remove("speaking");
           speakBtn.setAttribute("aria-pressed", "false");
-          stateCapsuleEl.textContent = EMOTIONS[currentEmotionKey].state;
         }
-      }, 160);
+      }, 155);
     });
   }
 
-  // Natural blinking loop (respects reduced motion)
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!prefersReducedMotion && leftEye && rightEye) {
     setInterval(() => {
@@ -232,7 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3200);
   }
 
-  // Auto-cycle emotions with Accessible Pause/Play button (WCAG 2.2.2 compliant)
   const emotionOrder = Object.keys(EMOTIONS);
   let cycleIdx = 0;
 
@@ -248,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
     autoCycleTimer = setInterval(() => {
       cycleIdx = (cycleIdx + 1) % emotionOrder.length;
       setEmotion(emotionOrder[cycleIdx]);
-    }, 4200);
+    }, 4000);
   }
 
   function stopAutoCycle() {
@@ -259,8 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateAutoCycleButton() {
     if (!autoCycleBtn) return;
-    // Per Modern Web Guidance `motion`: when button text switches between Pause and Play, do NOT set aria-pressed
-    autoCycleBtn.textContent = isAutoCycling ? "⏸ Otomatik Duygu: Duraklat" : "▶ Otomatik Duygu: Oynat";
+    autoCycleBtn.textContent = isAutoCycling ? "⏸ Duraklat" : "▶ Oynat";
   }
 
   if (autoCycleBtn) {
@@ -275,52 +234,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startAutoCycle();
 
-  // Command Playground Simulator
+  // Life Moments Selector
   const promptButtons = document.querySelectorAll(".prompt-btn");
-  const termTool = document.getElementById("term-tool");
-  const termEmotion = document.getElementById("term-emotion");
-  const termMotors = document.getElementById("term-motors");
-  const termSpeech = document.getElementById("term-speech");
+  const expMoment = document.getElementById("exp-moment");
+  const expReply = document.getElementById("exp-reply");
+  const expFace = document.getElementById("exp-face");
+  const expBody = document.getElementById("exp-body");
 
-  function renderScenario(index) {
-    const item = COMMAND_SCENARIOS[index];
+  function renderMoment(index) {
+    const item = LIFE_MOMENTS[index];
     if (!item) return;
 
     promptButtons.forEach((b, idx) => {
       b.setAttribute("aria-selected", idx === index ? "true" : "false");
     });
 
-    if (termTool) termTool.textContent = item.toolCall;
-    if (termEmotion) {
-      const emoObj = EMOTIONS[item.emotion];
-      termEmotion.textContent = `${item.emotion} (${emoObj ? emoObj.title : ""})`;
-    }
-    if (termMotors) {
-      termMotors.innerHTML = "";
-      item.motorSteps.forEach((step) => {
-        const span = document.createElement("span");
-        span.className = "motor-chip";
-        span.textContent = `${step.cmd} • ${step.ms}ms`;
-        termMotors.appendChild(span);
-      });
-    }
-    if (termSpeech) termSpeech.textContent = item.response;
+    if (expMoment) expMoment.textContent = `✦ ${item.moment}`;
+    if (expReply) expReply.textContent = item.reply;
+    if (expFace) expFace.textContent = item.faceReaction;
+    if (expBody) expBody.textContent = item.bodyMovement;
 
-    // Also reflect emotion on Milo's hero face
     stopAutoCycle();
     setEmotion(item.emotion);
   }
 
   promptButtons.forEach((btn, idx) => {
-    btn.addEventListener("click", () => renderScenario(idx));
+    btn.addEventListener("click", () => renderMoment(idx));
   });
 
-  // Modal Dialog (`<dialog>`) for Architecture Specs
-  const openModalBtn = document.getElementById("open-arch-modal");
-  const archDialog = document.getElementById("arch-dialog");
-  if (openModalBtn && archDialog) {
-    openModalBtn.addEventListener("click", () => {
-      archDialog.showModal();
+  // Box Contents / Order Modal
+  const openModalBtns = document.querySelectorAll(".open-order-modal");
+  const orderDialog = document.getElementById("order-dialog");
+  if (orderDialog) {
+    openModalBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        orderDialog.showModal();
+      });
     });
   }
 });
