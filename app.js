@@ -307,7 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
     autoCycleTimer = setInterval(() => {
       cycleIdx = (cycleIdx + 1) % emotionOrder.length;
       setEmotion(emotionOrder[cycleIdx]);
-    }, 4000);
+    }, 3000);
   }
 
   function stopAutoCycle() {
@@ -463,4 +463,84 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize language & auto-cycle
   applyLanguage(currentLang);
   startAutoCycle();
+
+  // Custom Large Cursor & Live Eye-Gaze Tracking
+  const cursorEl = document.getElementById("milo-cursor");
+  const faceCanvas = document.querySelector(".milo-face-canvas");
+  const isFinePointer = window.matchMedia("(pointer: fine)").matches;
+
+  if (isFinePointer && !prefersReducedMotion) {
+    if (cursorEl) {
+      document.body.classList.add("has-custom-cursor");
+    }
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let curX = mouseX;
+    let curY = mouseY;
+    let gazeX = 0;
+    let gazeY = 0;
+
+    window.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (cursorEl && !cursorEl.classList.contains("is-visible")) {
+        cursorEl.classList.add("is-visible");
+      }
+    }, { passive: true });
+
+    document.addEventListener("mouseleave", () => {
+      if (cursorEl) cursorEl.classList.remove("is-visible");
+    });
+
+    document.addEventListener("mousedown", () => {
+      if (cursorEl) cursorEl.classList.add("is-pressed");
+    });
+
+    document.addEventListener("mouseup", () => {
+      if (cursorEl) cursorEl.classList.remove("is-pressed");
+    });
+
+    document.addEventListener("mouseover", (e) => {
+      if (!cursorEl) return;
+      const interactive = e.target.closest("a, button, summary, input, [role='button'], [role='tab'], [role='option']");
+      cursorEl.classList.toggle("is-hovering", Boolean(interactive));
+    });
+
+    function animateCursorAndGaze() {
+      // Smooth cursor follow
+      curX += (mouseX - curX) * 0.24;
+      curY += (mouseY - curY) * 0.24;
+      if (cursorEl) {
+        cursorEl.style.transform = `translate3d(${curX}px, ${curY}px, 0)`;
+      }
+
+      // Smooth Milo eye gaze tracking toward cursor
+      if (faceCanvas) {
+        if (currentEmotionKey === "sleeping") {
+          gazeX += (0 - gazeX) * 0.1;
+          gazeY += (0 - gazeY) * 0.1;
+        } else {
+          const rect = faceCanvas.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const dx = mouseX - cx;
+          const dy = mouseY - cy;
+          const dist = Math.hypot(dx, dy) || 1;
+          const maxDist = Math.max(window.innerWidth, window.innerHeight) * 0.55;
+          const strength = Math.min(1, dist / maxDist);
+          const targetX = (dx / dist) * 18 * strength;
+          const targetY = (dy / dist) * 11 * strength;
+          gazeX += (targetX - gazeX) * 0.14;
+          gazeY += (targetY - gazeY) * 0.14;
+        }
+        faceCanvas.style.setProperty("--gaze-x", `${gazeX.toFixed(2)}px`);
+        faceCanvas.style.setProperty("--gaze-y", `${gazeY.toFixed(2)}px`);
+      }
+
+      requestAnimationFrame(animateCursorAndGaze);
+    }
+
+    requestAnimationFrame(animateCursorAndGaze);
+  }
 });
