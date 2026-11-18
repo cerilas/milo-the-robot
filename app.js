@@ -25,16 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const rightEye = document.getElementById("eye-right");
   const mouthEl = document.getElementById("milo-mouth");
   const emoButtons = document.querySelectorAll(".emo-btn");
-  const trackingBtn = document.getElementById("toggle-tracking-btn");
-  const speakBtn = document.getElementById("trigger-speak-btn");
   const autoCycleBtn = document.getElementById("toggle-autocycle-btn");
-  const splitContainer = document.getElementById("face-body-split");
   const langToggleBtn = document.getElementById("lang-toggle");
-
-  const trackingStatusEl = document.getElementById("tracking-status-text");
-  const trackingMotorEl = document.getElementById("tracking-motor-text");
-  const trackingVideoEl = document.getElementById("tracking-webcam");
-  const trackingFallbackEl = document.getElementById("tracking-fallback-msg");
 
   const promptButtons = document.querySelectorAll(".prompt-btn");
   const expMoment = document.getElementById("exp-moment");
@@ -52,8 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentWfIdx = 0;
   let autoCycleTimer = null;
   let isAutoCycling = true;
-  let cameraStream = null;
-  let trackingState = "closed"; // closed | requesting | active | denied | unsupported
 
   function t() {
     return window.MILO_I18N[currentLang];
@@ -124,41 +114,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     renderWorkflow(currentWfIdx);
 
-    // Update tracking button & panel strings
-    if (trackingBtn && splitContainer) {
-      const isOpen = splitContainer.classList.contains("tracking-open");
-      const labelSpan = trackingBtn.querySelector(".tracking-label");
-      if (labelSpan) {
-        labelSpan.textContent = isOpen ? dict.hud.eyeContactOn : dict.hud.eyeContact;
-      }
-      refreshTrackingText();
-    }
-
     updateAutoCycleButton();
     setEmotion(currentEmotionKey);
-  }
-
-  function refreshTrackingText() {
-    const dict = t();
-    if (!trackingStatusEl) return;
-    if (trackingState === "active") {
-      trackingStatusEl.textContent = dict.hud.trackingStatusActive;
-      if (trackingMotorEl) trackingMotorEl.textContent = dict.hud.motorActive;
-    } else if (trackingState === "requesting") {
-      trackingStatusEl.textContent = dict.hud.trackingStatusRequesting;
-      if (trackingFallbackEl) trackingFallbackEl.textContent = dict.hud.trackingFallbackWaiting;
-    } else if (trackingState === "denied") {
-      trackingStatusEl.textContent = dict.hud.trackingStatusDenied;
-      if (trackingMotorEl) trackingMotorEl.textContent = dict.hud.motorStandby;
-      if (trackingFallbackEl) trackingFallbackEl.textContent = dict.hud.trackingFallbackDenied;
-    } else if (trackingState === "unsupported") {
-      trackingStatusEl.textContent = dict.hud.trackingStatusUnsupported;
-      if (trackingFallbackEl) trackingFallbackEl.textContent = dict.hud.trackingFallbackUnsupported;
-    } else {
-      trackingStatusEl.textContent = dict.hud.trackingStatusClosed;
-      if (trackingMotorEl) trackingMotorEl.textContent = dict.hud.motorReady;
-      if (trackingFallbackEl) trackingFallbackEl.textContent = dict.hud.trackingFallbackClosed;
-    }
   }
 
   function setEmotion(key) {
@@ -187,97 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
       setEmotion(btn.dataset.emotion);
     });
   });
-
-  async function startTrackingCamera() {
-    if (!trackingVideoEl || !trackingStatusEl) return;
-    const dict = t();
-
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      trackingState = "unsupported";
-      trackingStatusEl.style.color = "var(--subtext)";
-      if (trackingFallbackEl) trackingFallbackEl.classList.remove("hidden");
-      refreshTrackingText();
-      return;
-    }
-
-    trackingState = "requesting";
-    trackingStatusEl.style.color = "var(--subtext)";
-    if (trackingFallbackEl) trackingFallbackEl.classList.remove("hidden");
-    refreshTrackingText();
-
-    try {
-      cameraStream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "user" },
-        audio: false
-      });
-
-      if (!splitContainer.classList.contains("tracking-open")) {
-        stopTrackingCamera();
-        return;
-      }
-
-      trackingVideoEl.srcObject = cameraStream;
-      await trackingVideoEl.play();
-      trackingVideoEl.classList.add("is-live");
-      if (trackingFallbackEl) trackingFallbackEl.classList.add("hidden");
-      trackingState = "active";
-      trackingStatusEl.style.color = "var(--success)";
-      refreshTrackingText();
-    } catch (err) {
-      trackingVideoEl.classList.remove("is-live");
-      trackingState = "denied";
-      trackingStatusEl.style.color = "#FF4560";
-      if (trackingFallbackEl) trackingFallbackEl.classList.remove("hidden");
-      refreshTrackingText();
-    }
-  }
-
-  function stopTrackingCamera() {
-    if (cameraStream) {
-      cameraStream.getTracks().forEach((track) => track.stop());
-      cameraStream = null;
-    }
-    if (trackingVideoEl) {
-      trackingVideoEl.srcObject = null;
-      trackingVideoEl.classList.remove("is-live");
-    }
-    if (trackingFallbackEl) trackingFallbackEl.classList.remove("hidden");
-    trackingState = "closed";
-    if (trackingStatusEl) trackingStatusEl.style.color = "var(--subtext)";
-    refreshTrackingText();
-  }
-
-  if (trackingBtn && splitContainer) {
-    trackingBtn.addEventListener("click", () => {
-      const isOpen = splitContainer.classList.toggle("tracking-open");
-      trackingBtn.setAttribute("aria-pressed", isOpen ? "true" : "false");
-      const labelSpan = trackingBtn.querySelector(".tracking-label");
-      if (labelSpan) {
-        labelSpan.textContent = isOpen ? t().hud.eyeContactOn : t().hud.eyeContact;
-      }
-      if (isOpen) {
-        startTrackingCamera();
-      } else {
-        stopTrackingCamera();
-      }
-    });
-  }
-
-  if (speakBtn && mouthEl) {
-    speakBtn.addEventListener("click", () => {
-      speakBtn.setAttribute("aria-pressed", "true");
-      let ticks = 0;
-      const interval = setInterval(() => {
-        mouthEl.classList.toggle("speaking");
-        ticks += 1;
-        if (ticks >= 10) {
-          clearInterval(interval);
-          mouthEl.classList.remove("speaking");
-          speakBtn.setAttribute("aria-pressed", "false");
-        }
-      }, 155);
-    });
-  }
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!prefersReducedMotion && leftEye && rightEye) {
