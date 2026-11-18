@@ -353,22 +353,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Integrations Marquee Pause/Play Control (WCAG 2.2.2)
-  const marqueeTrack = document.getElementById("marquee-track");
-  const marqueeBtn = document.getElementById("toggle-marquee-btn");
-  if (marqueeTrack && marqueeBtn) {
-    let marqueePaused = prefersReducedMotion;
-    if (marqueePaused) {
-      marqueeTrack.classList.add("is-paused");
-      marqueeBtn.textContent = "Oynat";
-    }
-    marqueeBtn.addEventListener("click", () => {
-      marqueePaused = !marqueePaused;
-      marqueeTrack.classList.toggle("is-paused", marqueePaused);
-      marqueeBtn.textContent = marqueePaused ? "Oynat" : "Duraklat";
-    });
-  }
-
   // Corporate Quote Dialog & Form
   const corpModalBtns = document.querySelectorAll(".open-corporate-modal");
   const corpDialog = document.getElementById("corporate-dialog");
