@@ -352,4 +352,46 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  // Integrations Marquee Pause/Play Control (WCAG 2.2.2)
+  const marqueeTrack = document.getElementById("marquee-track");
+  const marqueeBtn = document.getElementById("toggle-marquee-btn");
+  if (marqueeTrack && marqueeBtn) {
+    let marqueePaused = prefersReducedMotion;
+    if (marqueePaused) {
+      marqueeTrack.classList.add("is-paused");
+      marqueeBtn.textContent = "Oynat";
+    }
+    marqueeBtn.addEventListener("click", () => {
+      marqueePaused = !marqueePaused;
+      marqueeTrack.classList.toggle("is-paused", marqueePaused);
+      marqueeBtn.textContent = marqueePaused ? "Oynat" : "Duraklat";
+    });
+  }
+
+  // Corporate Quote Dialog & Form
+  const corpModalBtns = document.querySelectorAll(".open-corporate-modal");
+  const corpDialog = document.getElementById("corporate-dialog");
+  const corpForm = document.getElementById("corporate-form");
+  const corpStatus = document.getElementById("corp-form-status");
+
+  if (corpDialog) {
+    corpModalBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (corpStatus) corpStatus.textContent = "";
+        corpDialog.showModal();
+      });
+    });
+  }
+
+  if (corpForm) {
+    corpForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const company = document.getElementById("corp-company")?.value.trim() || "Şirketiniz";
+      if (corpStatus) {
+        corpStatus.textContent = `Teşekkürler! ${company} için kurumsal teklif talebiniz alındı.`;
+      }
+      corpForm.reset();
+    });
+  }
 });

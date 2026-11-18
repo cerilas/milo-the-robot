@@ -1137,11 +1137,214 @@ dialog.milo-modal::backdrop {
   font-size: 0.8rem;
 }
 
+/* Integrations Marquee Banner */
+.integrations-marquee-section {
+  padding: 28px 0 34px;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.marquee-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.marquee-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--subtext);
+  letter-spacing: -0.01em;
+}
+
+.marquee-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes milo-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .marquee-track {
+    animation: milo-marquee 36s linear infinite;
+  }
+
+  .marquee-track:hover,
+  .marquee-track.is-paused {
+    animation-play-state: paused;
+  }
+}
+
+.marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-right: 14px;
+}
+
+.brand-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.brand-chip:hover {
+  border-color: var(--border);
+  background: var(--surface-hover);
+}
+
+.brand-svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
+.brand-img {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Corporate Promotion & Employee Gifting */
+.corporate-showcase {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.corporate-copy h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.corporate-lead {
+  color: var(--subtext);
+  font-size: 1.06rem;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.corporate-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.corporate-pillars {
+  display: flex;
+  flex-direction: column;
+}
+
+.pillar-item {
+  padding: 22px 0;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.pillar-item:last-child {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.pillar-item h3 {
+  font-size: 1.06rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.pillar-item p {
+  font-size: 0.9rem;
+  color: var(--subtext);
+  line-height: 1.55;
+}
+
+/* Corporate Modal Form */
+.corp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 12px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--subtext);
+}
+
+.form-field input {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+}
+
+.form-field input:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  border-color: transparent;
+}
+
+.corp-form-status {
+  font-size: 0.84rem;
+  color: var(--success);
+  text-align: center;
+  min-height: 1.2em;
+}
+
 /* Responsive */
 @media (max-width: 960px) {
   .playground-box,
   .cap-list,
-  .steps-grid {
+  .steps-grid,
+  .corporate-showcase {
     grid-template-columns: 1fr;
   }
 
@@ -1157,7 +1360,8 @@ dialog.milo-modal::backdrop {
     display: none;
   }
 
-  .exp-reactions {
+  .exp-reactions,
+  .form-row {
     grid-template-columns: 1fr;
   }
 
