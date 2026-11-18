@@ -1509,6 +1509,27 @@ dialog.milo-modal::backdrop {
     align-items: center;
     justify-content: center;
   }
+
+  /* Top-layer <dialog> sits above z-index:9999, so restore native cursor inside open modals */
+  body.has-custom-cursor:has(dialog[open]) .milo-cursor,
+  body.has-custom-cursor.is-modal-open .milo-cursor {
+    opacity: 0 !important;
+  }
+
+  body.has-custom-cursor dialog[open],
+  body.has-custom-cursor dialog[open] * {
+    cursor: auto !important;
+  }
+
+  body.has-custom-cursor dialog[open] button,
+  body.has-custom-cursor dialog[open] a {
+    cursor: pointer !important;
+  }
+
+  body.has-custom-cursor dialog[open] input,
+  body.has-custom-cursor dialog[open] textarea {
+    cursor: text !important;
+  }
 }
 
 .milo-cursor.is-visible {

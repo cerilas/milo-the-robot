@@ -423,8 +423,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (orderDialog) {
     openModalBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
+        document.body.classList.add("is-modal-open");
         orderDialog.showModal();
       });
+    });
+    orderDialog.addEventListener("close", () => {
+      document.body.classList.remove("is-modal-open");
     });
   }
 
@@ -438,8 +442,12 @@ document.addEventListener("DOMContentLoaded", () => {
     corpModalBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
         if (corpStatus) corpStatus.textContent = "";
+        document.body.classList.add("is-modal-open");
         corpDialog.showModal();
       });
+    });
+    corpDialog.addEventListener("close", () => {
+      document.body.classList.remove("is-modal-open");
     });
   }
 
