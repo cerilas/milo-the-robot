@@ -385,6 +385,8 @@ document.addEventListener("DOMContentLoaded", () => {
       num.textContent = `0${idx + 1}`;
 
       const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("width", "36");
+      svg.setAttribute("height", "36");
       svg.setAttribute("viewBox", "0 0 24 24");
       svg.setAttribute("fill", "none");
       svg.setAttribute("stroke", "currentColor");
