@@ -1,113 +1,20 @@
-// Milo — Consumer Product Experience & Live Personality Engine
+// Milo — Consumer Product Experience, Live Personality & Bilingual (TR/EN) Engine
 
-const EMOTIONS = {
-  neutral: {
-    title: "Sakin",
-    primary: "#72DDF7",
-    secondary: "#A7F3FF",
-    glow: "rgba(114, 221, 247, 0.24)",
-    speech: "“Merhaba! Ben Milo. Bugün sana nasıl eşlik edebilirim?”"
-  },
-  veryHappy: {
-    title: "Çok Mutlu",
-    primary: "#FFE66D",
-    secondary: "#FF9F1C",
-    glow: "rgba(255, 230, 109, 0.24)",
-    speech: "“Yaşasın! Bugünkü tüm işlerini bitirdik, kutlama zamanı!”"
-  },
-  happy: {
-    title: "Mutlu",
-    primary: "#00D4AA",
-    secondary: "#55E6C1",
-    glow: "rgba(0, 212, 170, 0.24)",
-    speech: "“Sabah kahven hazır görünüyorsa günün planını anlatmaya başlıyorum.”"
-  },
-  listening: {
-    title: "Seni Dinliyor",
-    primary: "#7AFBFF",
-    secondary: "#00D4AA",
-    glow: "rgba(122, 251, 255, 0.26)",
-    speech: "“Seni dinliyorum... İstediğin her şeyi bana sorabilirsin.”"
-  },
-  thoughtful: {
-    title: "Meraklı",
-    primary: "#B794F4",
-    secondary: "#7B61FF",
-    glow: "rgba(183, 148, 244, 0.24)",
-    speech: "“Hmm, elindeki kitabı inceliyorum... Kapak tasarımı harikaymış.”"
-  },
-  surprised: {
-    title: "Şaşkın",
-    primary: "#FFB800",
-    secondary: "#FFD166",
-    glow: "rgba(255, 184, 0, 0.24)",
-    speech: "“Vay canına! Yeni saç stilin sana çok yakışmış!”"
-  },
-  sad: {
-    title: "Duygusal",
-    primary: "#5B8FF9",
-    secondary: "#9EC5FF",
-    glow: "rgba(91, 143, 249, 0.22)",
-    speech: "“Bugün dışarıda sağanak yağmur var, çıkarken şemsiyeni unutma olur mu?”"
-  },
-  angry: {
-    title: "Huysuz",
-    primary: "#FF4560",
-    secondary: "#FF7A59",
-    glow: "rgba(255, 69, 96, 0.24)",
-    speech: "“Hey! Enerjim bitmek üzere, beni şarja takmayı unuttun!”"
-  },
-  sleeping: {
-    title: "Uykuda",
-    primary: "#3A4A6B",
-    secondary: "#1A2340",
-    glow: "rgba(58, 74, 107, 0.18)",
-    speech: "“Zzz... İyi geceler. Sabah alarmında görüşürüz.”"
-  }
+const EMOTION_COLORS = {
+  neutral:    { primary: "#72DDF7", secondary: "#A7F3FF", glow: "rgba(114, 221, 247, 0.24)" },
+  veryHappy:  { primary: "#FFE66D", secondary: "#FF9F1C", glow: "rgba(255, 230, 109, 0.24)" },
+  happy:      { primary: "#00D4AA", secondary: "#55E6C1", glow: "rgba(0, 212, 170, 0.24)" },
+  listening:  { primary: "#7AFBFF", secondary: "#00D4AA", glow: "rgba(122, 251, 255, 0.26)" },
+  thoughtful: { primary: "#B794F4", secondary: "#7B61FF", glow: "rgba(183, 148, 244, 0.24)" },
+  surprised:  { primary: "#FFB800", secondary: "#FFD166", glow: "rgba(255, 184, 0, 0.24)" },
+  sad:        { primary: "#5B8FF9", secondary: "#9EC5FF", glow: "rgba(91, 143, 249, 0.22)" },
+  angry:      { primary: "#FF4560", secondary: "#FF7A59", glow: "rgba(255, 69, 96, 0.24)" },
+  sleeping:   { primary: "#3A4A6B", secondary: "#1A2340", glow: "rgba(58, 74, 107, 0.18)" }
 };
 
-const LIFE_MOMENTS = [
-  {
-    moment: "Görsel Farkındalık",
-    utterance: "“Milo, sence bu iki gömlekten hangisini giymeliyim?”",
-    emotion: "surprised",
-    faceReaction: "Şaşkın ve heyecanlı bakış",
-    bodyMovement: "Sana doğru yaklaşır ve başını hafifçe eğer",
-    reply: "“Sol elindeki lacivert keten gömlek bugünkü güneşli havaya çok daha uygun! Üstelik gözlerinin rengini ortaya çıkarıyor.”"
-  },
-  {
-    moment: "Günlük Planlama",
-    utterance: "“Yarın sabah 09:30’a dişçi randevusu ekle ve beni 08:00’de uyandır.”",
-    emotion: "happy",
-    faceReaction: "Sıcak gülümseme",
-    bodyMovement: "Onaylamak için neşeyle sağa-sola sallanır",
-    reply: "“Tamamdır! Yarın 09:30 dişçi randevunu takvimine işledim, 15 dakika öncesine hatırlatıcı koydum ve sabah 08:00 alarmını kurdum.”"
-  },
-  {
-    moment: "Hızlı İletişim",
-    utterance: "“Anneme WhatsApp’tan ‘Yoldayım, 20 dakikaya oradayım’ diye mesaj at.”",
-    emotion: "veryHappy",
-    faceReaction: "Çok mutlu ve neşeli",
-    bodyMovement: "Küçük bir sevinç dönüşü yapar",
-    reply: "“Rehberinden anneni buldum ve WhatsApp mesajını hazırladım. Ekrana dokunup hemen gönderebilirsin!”"
-  },
-  {
-    moment: "Anı Yakalama",
-    utterance: "“Milo, bizi çek! Gülümseyince fotoğrafımızı kaydet.”",
-    emotion: "listening",
-    faceReaction: "Sol gözü kamera lensine dönüşür",
-    bodyMovement: "En iyi açı için kadrajı ortalar",
-    reply: "“Harika görünüyorsunuz! 3... 2... 1... Çektim! Fotoğrafınızı hem galerine hem de bulut albümüne kaydettim.”"
-  },
-  {
-    moment: "Masaüstü Arkadaşlığı",
-    utterance: "“Çok yorucu bir gündü Milo, bana biraz moral ver.”",
-    emotion: "thoughtful",
-    faceReaction: "Şefkatli ve meraklı gözler",
-    bodyMovement: "Yavaşça yanına sokulur",
-    reply: "“Bugün gerçekten çok çalıştın. Şimdi arkana yaslanıp derin bir nefes alma sırası sende. İstersen çalışma masanın ışığını biraz kısayım?”"
-  }
-];
+function getNestedValue(obj, path) {
+  return path.split(".").reduce((acc, part) => (acc !== undefined && acc !== null ? acc[part] : undefined), obj);
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.documentElement;
@@ -122,23 +29,139 @@ document.addEventListener("DOMContentLoaded", () => {
   const speakBtn = document.getElementById("trigger-speak-btn");
   const autoCycleBtn = document.getElementById("toggle-autocycle-btn");
   const splitContainer = document.getElementById("face-body-split");
+  const langToggleBtn = document.getElementById("lang-toggle");
 
+  const trackingStatusEl = document.getElementById("tracking-status-text");
+  const trackingMotorEl = document.getElementById("tracking-motor-text");
+  const trackingVideoEl = document.getElementById("tracking-webcam");
+  const trackingFallbackEl = document.getElementById("tracking-fallback-msg");
+
+  const promptButtons = document.querySelectorAll(".prompt-btn");
+  const expMoment = document.getElementById("exp-moment");
+  const expReply = document.getElementById("exp-reply");
+  const expFace = document.getElementById("exp-face");
+  const expBody = document.getElementById("exp-body");
+
+  let currentLang = localStorage.getItem("milo-lang") === "en" ? "en" : "tr";
   let currentEmotionKey = "neutral";
+  let currentMomentIdx = 0;
   let autoCycleTimer = null;
   let isAutoCycling = true;
+  let cameraStream = null;
+  let trackingState = "closed"; // closed | requesting | active | denied | unsupported
+
+  function t() {
+    return window.MILO_I18N[currentLang];
+  }
+
+  function applyLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem("milo-lang", lang);
+    const dict = t();
+
+    document.documentElement.lang = lang;
+    document.title = dict.pageTitle;
+
+    if (langToggleBtn) {
+      langToggleBtn.textContent = lang === "tr" ? "EN" : "TR";
+      langToggleBtn.setAttribute(
+        "aria-label",
+        lang === "tr" ? "Switch language to English" : "Dili Türkçeye çevir"
+      );
+    }
+
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      const val = getNestedValue(dict, el.dataset.i18n);
+      if (typeof val === "string") {
+        el.textContent = val;
+      }
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+      const val = getNestedValue(dict, el.dataset.i18nPlaceholder);
+      if (typeof val === "string") {
+        el.setAttribute("placeholder", val);
+      }
+    });
+
+    // Update emotion buttons
+    emoButtons.forEach((btn) => {
+      const key = btn.dataset.emotion;
+      const labelSpan = btn.querySelector(".emo-label");
+      if (labelSpan && dict.emotions[key]) {
+        labelSpan.textContent = dict.emotions[key].title;
+      }
+    });
+
+    // Update prompt list items
+    promptButtons.forEach((btn, idx) => {
+      const m = dict.dialogue.moments[idx];
+      if (!m) return;
+      const utt = btn.querySelector(".prompt-utterance");
+      const tag = btn.querySelector(".prompt-tag");
+      if (utt) utt.textContent = m.utterance;
+      if (tag) tag.textContent = m.tag;
+    });
+
+    // Refresh active moment card without stopping auto-cycle
+    const activeMoment = dict.dialogue.moments[currentMomentIdx];
+    if (activeMoment) {
+      if (expMoment) expMoment.textContent = activeMoment.moment;
+      if (expReply) expReply.textContent = activeMoment.reply;
+      if (expFace) expFace.textContent = activeMoment.faceReaction;
+      if (expBody) expBody.textContent = activeMoment.bodyMovement;
+    }
+
+    // Update tracking button & panel strings
+    if (trackingBtn && splitContainer) {
+      const isOpen = splitContainer.classList.contains("tracking-open");
+      const labelSpan = trackingBtn.querySelector(".tracking-label");
+      if (labelSpan) {
+        labelSpan.textContent = isOpen ? dict.hud.eyeContactOn : dict.hud.eyeContact;
+      }
+      refreshTrackingText();
+    }
+
+    updateAutoCycleButton();
+    setEmotion(currentEmotionKey);
+  }
+
+  function refreshTrackingText() {
+    const dict = t();
+    if (!trackingStatusEl) return;
+    if (trackingState === "active") {
+      trackingStatusEl.textContent = dict.hud.trackingStatusActive;
+      if (trackingMotorEl) trackingMotorEl.textContent = dict.hud.motorActive;
+    } else if (trackingState === "requesting") {
+      trackingStatusEl.textContent = dict.hud.trackingStatusRequesting;
+      if (trackingFallbackEl) trackingFallbackEl.textContent = dict.hud.trackingFallbackWaiting;
+    } else if (trackingState === "denied") {
+      trackingStatusEl.textContent = dict.hud.trackingStatusDenied;
+      if (trackingMotorEl) trackingMotorEl.textContent = dict.hud.motorStandby;
+      if (trackingFallbackEl) trackingFallbackEl.textContent = dict.hud.trackingFallbackDenied;
+    } else if (trackingState === "unsupported") {
+      trackingStatusEl.textContent = dict.hud.trackingStatusUnsupported;
+      if (trackingFallbackEl) trackingFallbackEl.textContent = dict.hud.trackingFallbackUnsupported;
+    } else {
+      trackingStatusEl.textContent = dict.hud.trackingStatusClosed;
+      if (trackingMotorEl) trackingMotorEl.textContent = dict.hud.motorReady;
+      if (trackingFallbackEl) trackingFallbackEl.textContent = dict.hud.trackingFallbackClosed;
+    }
+  }
 
   function setEmotion(key) {
-    const data = EMOTIONS[key];
-    if (!data) return;
+    const colors = EMOTION_COLORS[key];
+    const copy = t().emotions[key];
+    if (!colors || !copy) return;
     currentEmotionKey = key;
 
-    root.style.setProperty("--emo-primary", data.primary);
-    root.style.setProperty("--emo-secondary", data.secondary);
-    root.style.setProperty("--emo-glow", data.glow);
+    root.style.setProperty("--emo-primary", colors.primary);
+    root.style.setProperty("--emo-secondary", colors.secondary);
+    root.style.setProperty("--emo-glow", colors.glow);
 
     screenEl.setAttribute("data-emotion", key);
-    emoTitleEl.textContent = data.title;
-    speechBubbleEl.textContent = data.speech;
+    emoTitleEl.textContent = copy.title;
+    speechBubbleEl.textContent = copy.speech;
 
     emoButtons.forEach((btn) => {
       const active = btn.dataset.emotion === key;
@@ -153,31 +176,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  const trackingStatusEl = document.getElementById("tracking-status-text");
-  const trackingMotorEl = document.getElementById("tracking-motor-text");
-  const trackingVideoEl = document.getElementById("tracking-webcam");
-  const trackingFallbackEl = document.getElementById("tracking-fallback-msg");
-  let cameraStream = null;
-
   async function startTrackingCamera() {
     if (!trackingVideoEl || !trackingStatusEl) return;
+    const dict = t();
 
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      trackingStatusEl.textContent = "Desteklenmiyor";
+      trackingState = "unsupported";
       trackingStatusEl.style.color = "var(--subtext)";
-      if (trackingFallbackEl) {
-        trackingFallbackEl.textContent = "Tarayıcı kamera erişimini desteklemiyor.";
-        trackingFallbackEl.classList.remove("hidden");
-      }
+      if (trackingFallbackEl) trackingFallbackEl.classList.remove("hidden");
+      refreshTrackingText();
       return;
     }
 
-    trackingStatusEl.textContent = "İzin İsteniyor...";
+    trackingState = "requesting";
     trackingStatusEl.style.color = "var(--subtext)";
-    if (trackingFallbackEl) {
-      trackingFallbackEl.textContent = "Kamera izni bekleniyor...";
-      trackingFallbackEl.classList.remove("hidden");
-    }
+    if (trackingFallbackEl) trackingFallbackEl.classList.remove("hidden");
+    refreshTrackingText();
 
     try {
       cameraStream = await navigator.mediaDevices.getUserMedia({
@@ -185,7 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
         audio: false
       });
 
-      // User might have closed tracking before permission resolved
       if (!splitContainer.classList.contains("tracking-open")) {
         stopTrackingCamera();
         return;
@@ -195,18 +208,15 @@ document.addEventListener("DOMContentLoaded", () => {
       await trackingVideoEl.play();
       trackingVideoEl.classList.add("is-live");
       if (trackingFallbackEl) trackingFallbackEl.classList.add("hidden");
-      trackingStatusEl.textContent = "Sizi Görüyor";
+      trackingState = "active";
       trackingStatusEl.style.color = "var(--success)";
-      if (trackingMotorEl) trackingMotorEl.textContent = "Aktif";
+      refreshTrackingText();
     } catch (err) {
       trackingVideoEl.classList.remove("is-live");
-      trackingStatusEl.textContent = "İzin Verilmedi";
+      trackingState = "denied";
       trackingStatusEl.style.color = "#FF4560";
-      if (trackingMotorEl) trackingMotorEl.textContent = "Beklemede";
-      if (trackingFallbackEl) {
-        trackingFallbackEl.textContent = "Kamera izni verilmedi veya cihaz bulunamadı.";
-        trackingFallbackEl.classList.remove("hidden");
-      }
+      if (trackingFallbackEl) trackingFallbackEl.classList.remove("hidden");
+      refreshTrackingText();
     }
   }
 
@@ -219,15 +229,10 @@ document.addEventListener("DOMContentLoaded", () => {
       trackingVideoEl.srcObject = null;
       trackingVideoEl.classList.remove("is-live");
     }
-    if (trackingFallbackEl) {
-      trackingFallbackEl.textContent = "Kamera kapalı";
-      trackingFallbackEl.classList.remove("hidden");
-    }
-    if (trackingStatusEl) {
-      trackingStatusEl.textContent = "Kapalı";
-      trackingStatusEl.style.color = "var(--subtext)";
-    }
-    if (trackingMotorEl) trackingMotorEl.textContent = "Hazır";
+    if (trackingFallbackEl) trackingFallbackEl.classList.remove("hidden");
+    trackingState = "closed";
+    if (trackingStatusEl) trackingStatusEl.style.color = "var(--subtext)";
+    refreshTrackingText();
   }
 
   if (trackingBtn && splitContainer) {
@@ -236,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
       trackingBtn.setAttribute("aria-pressed", isOpen ? "true" : "false");
       const labelSpan = trackingBtn.querySelector(".tracking-label");
       if (labelSpan) {
-        labelSpan.textContent = isOpen ? "Göz Teması Açık" : "Göz Teması";
+        labelSpan.textContent = isOpen ? t().hud.eyeContactOn : t().hud.eyeContact;
       }
       if (isOpen) {
         startTrackingCamera();
@@ -275,7 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3200);
   }
 
-  const emotionOrder = Object.keys(EMOTIONS);
+  const emotionOrder = Object.keys(EMOTION_COLORS);
   let cycleIdx = 0;
 
   function startAutoCycle() {
@@ -301,7 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateAutoCycleButton() {
     if (!autoCycleBtn) return;
-    autoCycleBtn.textContent = isAutoCycling ? "Duraklat" : "Oynat";
+    autoCycleBtn.textContent = isAutoCycling ? t().hud.pause : t().hud.play;
   }
 
   if (autoCycleBtn) {
@@ -314,17 +319,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  startAutoCycle();
-
-  const promptButtons = document.querySelectorAll(".prompt-btn");
-  const expMoment = document.getElementById("exp-moment");
-  const expReply = document.getElementById("exp-reply");
-  const expFace = document.getElementById("exp-face");
-  const expBody = document.getElementById("exp-body");
-
   function renderMoment(index) {
-    const item = LIFE_MOMENTS[index];
+    const item = t().dialogue.moments[index];
     if (!item) return;
+    currentMomentIdx = index;
 
     promptButtons.forEach((b, idx) => {
       b.setAttribute("aria-selected", idx === index ? "true" : "false");
@@ -371,11 +369,21 @@ document.addEventListener("DOMContentLoaded", () => {
   if (corpForm) {
     corpForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const company = document.getElementById("corp-company")?.value.trim() || "Şirketiniz";
+      const company = document.getElementById("corp-company")?.value.trim() || (currentLang === "en" ? "Your company" : "Şirketiniz");
       if (corpStatus) {
-        corpStatus.textContent = `Teşekkürler! ${company} için kurumsal teklif talebiniz alındı.`;
+        corpStatus.textContent = t().corpModal.success(company);
       }
       corpForm.reset();
     });
   }
+
+  if (langToggleBtn) {
+    langToggleBtn.addEventListener("click", () => {
+      applyLanguage(currentLang === "tr" ? "en" : "tr");
+    });
+  }
+
+  // Initialize language & auto-cycle
+  applyLanguage(currentLang);
+  startAutoCycle();
 });

@@ -31,20 +31,23 @@
 
       <nav aria-label="Ürün Menüsü">
         <ul class="nav-links">
-          <li><a href="#deneyim">Deneyim</a></li>
-          <li><a href="#diyalog">Birlikte Yaşamak</a></li>
-          <li><a href="#yetenekler">Yetenekler</a></li>
-          <li><a href="#kurumsal">Kurumsal</a></li>
-          <li><a href="#kurulum">Kurulum</a></li>
-          <li><a href="#sss">S.S.S.</a></li>
+          <li><a href="#deneyim" data-i18n="nav.experience">Deneyim</a></li>
+          <li><a href="#diyalog" data-i18n="nav.dialogue">Birlikte Yaşamak</a></li>
+          <li><a href="#yetenekler" data-i18n="nav.capabilities">Yetenekler</a></li>
+          <li><a href="#kurumsal" data-i18n="nav.corporate">Kurumsal</a></li>
+          <li><a href="#kurulum" data-i18n="nav.setup">Kurulum</a></li>
+          <li><a href="#sss" data-i18n="nav.faq">S.S.S.</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <button type="button" class="nav-text-btn open-order-modal">
+        <button type="button" id="lang-toggle" class="lang-toggle" aria-label="Switch language to English">
+          EN
+        </button>
+        <button type="button" class="nav-text-btn open-order-modal" data-i18n="nav.inBox">
           Kutu İçeriği
         </button>
-        <button type="button" class="btn btn-nav open-order-modal">
+        <button type="button" class="btn btn-nav open-order-modal" data-i18n="nav.order">
           Sipariş Et
         </button>
       </div>
@@ -56,16 +59,16 @@
     <section class="hero">
       <div class="container">
         <div class="hero-intro">
-          <p class="hero-kicker">Milo</p>
-          <h1>Masanızın en canlı üyesi.</h1>
-          <p class="hero-lead">
+          <p class="hero-kicker" data-i18n="hero.kicker">Milo</p>
+          <h1 data-i18n="hero.title">Masanızın en canlı üyesi.</h1>
+          <p class="hero-lead" data-i18n="hero.lead">
             iPhone’unuzu mıknatıslı gövdesine yerleştirin; Milo anında canlansın. Sizi gözleriyle takip eder, duygularıyla gülümser ve tek bir sözünüzle gününüzü kolaylaştırır.
           </p>
           <div class="hero-cta-row">
-            <button type="button" class="btn btn-primary open-order-modal">
+            <button type="button" class="btn btn-primary open-order-modal" data-i18n="hero.ctaPrimary">
               Milo’yu Sipariş Et
             </button>
-            <a href="#diyalog" class="btn btn-secondary">
+            <a href="#diyalog" class="btn btn-secondary" data-i18n="hero.ctaSecondary">
               Onunla tanışın ›
             </a>
           </div>
@@ -90,7 +93,7 @@
                         <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/>
                         <circle cx="12" cy="12" r="3"/>
                       </svg>
-                      <span class="tracking-label">Göz Teması</span>
+                      <span class="tracking-label" data-i18n="hud.eyeContact">Göz Teması</span>
                     </button>
                     <button
                       type="button"
@@ -103,7 +106,7 @@
                         <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
                         <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
                       </svg>
-                      <span>Sesini Dinle</span>
+                      <span data-i18n="hud.hearMilo">Sesini Dinle</span>
                     </button>
                   </div>
 
@@ -124,7 +127,7 @@
 
                   <div class="tracking-hud-panel" aria-label="Göz Teması ve Yüz Takibi">
                     <div class="tracking-meta">
-                      <span>Göz Teması</span>
+                      <span data-i18n="hud.eyeContact">Göz Teması</span>
                       <span id="tracking-status-text" style="color: var(--subtext);">İzin Bekleniyor</span>
                     </div>
                     <div class="tracking-reticle">
@@ -140,7 +143,7 @@
                       <span id="tracking-fallback-msg" class="tracking-fallback-msg">Kamera açılıyor...</span>
                     </div>
                     <div class="tracking-meta">
-                      <span>Otomatik Dönüş</span>
+                      <span data-i18n="hud.autoTurn">Otomatik Dönüş</span>
                       <span id="tracking-motor-text">Hazır</span>
                     </div>
                   </div>
@@ -162,38 +165,38 @@
 
           <div class="emotion-dock">
             <div class="emotion-dock-header">
-              <span>Ruh halini seçin</span>
+              <span data-i18n="hud.moodPrompt">Ruh halini seçin</span>
               <button type="button" id="toggle-autocycle-btn" class="hud-pill-btn">
                 Duraklat
               </button>
             </div>
             <div class="emotion-buttons" role="group" aria-label="Milo'nun ruh halini seçin">
               <button type="button" class="emo-btn" data-emotion="neutral" aria-pressed="true">
-                <span class="emo-swatch" style="background:#72DDF7" aria-hidden="true"></span>Sakin
+                <span class="emo-swatch" style="background:#72DDF7" aria-hidden="true"></span><span class="emo-label">Sakin</span>
               </button>
               <button type="button" class="emo-btn" data-emotion="veryHappy" aria-pressed="false">
-                <span class="emo-swatch" style="background:#FFE66D" aria-hidden="true"></span>Çok Mutlu
+                <span class="emo-swatch" style="background:#FFE66D" aria-hidden="true"></span><span class="emo-label">Çok Mutlu</span>
               </button>
               <button type="button" class="emo-btn" data-emotion="happy" aria-pressed="false">
-                <span class="emo-swatch" style="background:#00D4AA" aria-hidden="true"></span>Mutlu
+                <span class="emo-swatch" style="background:#00D4AA" aria-hidden="true"></span><span class="emo-label">Mutlu</span>
               </button>
               <button type="button" class="emo-btn" data-emotion="listening" aria-pressed="false">
-                <span class="emo-swatch" style="background:#7AFBFF" aria-hidden="true"></span>Dinliyor
+                <span class="emo-swatch" style="background:#7AFBFF" aria-hidden="true"></span><span class="emo-label">Dinliyor</span>
               </button>
               <button type="button" class="emo-btn" data-emotion="thoughtful" aria-pressed="false">
-                <span class="emo-swatch" style="background:#B794F4" aria-hidden="true"></span>Meraklı
+                <span class="emo-swatch" style="background:#B794F4" aria-hidden="true"></span><span class="emo-label">Meraklı</span>
               </button>
               <button type="button" class="emo-btn" data-emotion="surprised" aria-pressed="false">
-                <span class="emo-swatch" style="background:#FFB800" aria-hidden="true"></span>Şaşkın
+                <span class="emo-swatch" style="background:#FFB800" aria-hidden="true"></span><span class="emo-label">Şaşkın</span>
               </button>
               <button type="button" class="emo-btn" data-emotion="sad" aria-pressed="false">
-                <span class="emo-swatch" style="background:#5B8FF9" aria-hidden="true"></span>Duygusal
+                <span class="emo-swatch" style="background:#5B8FF9" aria-hidden="true"></span><span class="emo-label">Duygusal</span>
               </button>
               <button type="button" class="emo-btn" data-emotion="angry" aria-pressed="false">
-                <span class="emo-swatch" style="background:#FF4560" aria-hidden="true"></span>Huysuz
+                <span class="emo-swatch" style="background:#FF4560" aria-hidden="true"></span><span class="emo-label">Huysuz</span>
               </button>
               <button type="button" class="emo-btn" data-emotion="sleeping" aria-pressed="false">
-                <span class="emo-swatch" style="background:#3A4A6B" aria-hidden="true"></span>Uykuda
+                <span class="emo-swatch" style="background:#3A4A6B" aria-hidden="true"></span><span class="emo-label">Uykuda</span>
               </button>
             </div>
           </div>
@@ -204,7 +207,7 @@
     <!-- INTEGRATIONS MARQUEE BANNER -->
     <section class="integrations-marquee-section" aria-label="Uyumlu Olduğu Uygulamalar ve Platformlar">
       <div class="container marquee-header">
-        <p class="marquee-label">Milo hepsine bağlanır ve sizin için kontrol eder.</p>
+        <p class="marquee-label" data-i18n="marquee.label">Milo hepsine bağlanır ve sizin için kontrol eder.</p>
       </div>
 
       <div class="marquee-viewport">
@@ -280,7 +283,7 @@
               <svg viewBox="0 0 24 24" class="brand-svg" fill="none" stroke="#30D158" stroke-width="2" aria-hidden="true">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
               </svg>
-              <span>Telefon</span>
+              <span data-i18n="marquee.phone">Telefon</span>
             </div>
 
             <div class="brand-chip">
@@ -362,7 +365,7 @@
               <svg viewBox="0 0 24 24" class="brand-svg" fill="none" stroke="#30D158" stroke-width="2">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
               </svg>
-              <span>Telefon</span>
+              <span data-i18n="marquee.phone">Telefon</span>
             </div>
 
             <div class="brand-chip">
@@ -387,9 +390,9 @@
     <section class="section section-alt" id="deneyim">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow">Tasarım ve Karakter</span>
-          <h2>Sizi görür. Sizi anlar. Sizinle hareket eder.</h2>
-          <p>
+          <span class="eyebrow" data-i18n="experience.eyebrow">Tasarım ve Karakter</span>
+          <h2 data-i18n="experience.title">Sizi görür. Sizi anlar. Sizinle hareket eder.</h2>
+          <p data-i18n="experience.lead">
             Soğuk ve ruhsuz masaüstü hoparlörlerini unutun. Milo, odada olduğunuzu fark eden, sevincinize ortak olan ve gözlerinizin içine bakan canlı bir karakterdir.
           </p>
         </div>
@@ -401,12 +404,12 @@
                 <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/>
                 <circle cx="12" cy="12" r="3"/>
               </svg>
-              <h3>Gösterin, anlatsın.</h3>
-              <p>
+              <h3 data-i18n="experience.c1Title">Gösterin, anlatsın.</h3>
+              <p data-i18n="experience.c1Body">
                 Elinizdeki bir nesneyi, giymeyi düşündüğünüz kıyafeti veya merak ettiğiniz bir notu Milo’ya doğru tutmanız yeterli. Ne gördüğünü anında anlar, fikir verir ve sorularınızı doğal bir sohbetle yanıtlar.
               </p>
             </div>
-            <p class="card-example">“Milo, elimdeki kahve paketi hakkında ne düşünüyorsun?”</p>
+            <p class="card-example" data-i18n="experience.c1Example">“Milo, elimdeki kahve paketi hakkında ne düşünüyorsun?”</p>
           </article>
 
           <article class="editorial-card span-5 reveal-on-scroll">
@@ -415,12 +418,12 @@
                 <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
                 <circle cx="12" cy="13" r="4"/>
               </svg>
-              <h3>Her zaman göz temasında.</h3>
-              <p>
+              <h3 data-i18n="experience.c2Title">Her zaman göz temasında.</h3>
+              <p data-i18n="experience.c2Body">
                 Masanızda hareket ettiğinizde Milo sessizce size doğru döner. Konuşurken her zaman yüzünüze bakar; selfie çekmek istediğinizde sol gözü kamera lensine dönüşür.
               </p>
             </div>
-            <p class="card-example">“Milo, gülümsüyoruz, fotoğrafımızı çek.”</p>
+            <p class="card-example" data-i18n="experience.c2Example">“Milo, gülümsüyoruz, fotoğrafımızı çek.”</p>
           </article>
 
           <article class="editorial-card span-4 reveal-on-scroll">
@@ -430,8 +433,8 @@
                 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
                 <line x1="12" y1="19" x2="12" y2="23"/>
               </svg>
-              <h3>Sıcak ses, gerçek mimikler.</h3>
-              <p>
+              <h3 data-i18n="experience.c3Title">Sıcak ses, gerçek mimikler.</h3>
+              <p data-i18n="experience.c3Body">
                 Tekdüze robotik sesler yerine kendi sevimli tonuyla konuşur. Heyecanlandığında kıpırdanır, uyuduğunda nefes alır gibi dinlenir.
               </p>
             </div>
@@ -443,8 +446,8 @@
                 <rect x="2" y="6" width="20" height="12" rx="2"/>
                 <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/>
               </svg>
-              <h3>Gürültüde bile sizi anlar.</h3>
-              <p>
+              <h3 data-i18n="experience.c4Title">Gürültüde bile sizi anlar.</h3>
+              <p data-i18n="experience.c4Body">
                 Kalabalık bir ortamda özel bir isim veya e-posta adresi söylediğinizde emin olamazsa, ekranda zarif bir yazı alanı açarak kolayca tamamlamanızı sağlar.
               </p>
             </div>
@@ -457,8 +460,8 @@
                 <line x1="23" y1="13" x2="23" y2="11"/>
                 <path d="M7 10v4"/>
               </svg>
-              <h3>Kendi enerjisini korur.</h3>
-              <p>
+              <h3 data-i18n="experience.c5Title">Kendi enerjisini korur.</h3>
+              <p data-i18n="experience.c5Body">
                 Şarj seviyesini her an ekranda gösterir. Enerjisi azaldığında size haber verir ve pil sağlığını korumak için güvenli dinlenme moduna geçer.
               </p>
             </div>
@@ -471,32 +474,32 @@
     <section class="section" id="diyalog">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow">Birlikte Yaşamak</span>
-          <h2>Bir cümle söyleyin, gerisini Milo’ya bırakın.</h2>
-          <p>
+          <span class="eyebrow" data-i18n="dialogue.eyebrow">Birlikte Yaşamak</span>
+          <h2 data-i18n="dialogue.title">Bir cümle söyleyin, gerisini Milo’ya bırakın.</h2>
+          <p data-i18n="dialogue.lead">
             Gün içindeki doğal anlardan birini seçin; Milo’nun size nasıl yanıt verdiğini ve nasıl tepki gösterdiğini görün.
           </p>
         </div>
 
         <div class="playground-box">
           <div class="prompt-list" role="listbox" aria-label="Günlük yaşam senaryoları">
-            <button type="button" class="prompt-btn" role="option" aria-selected="true">
+            <button type="button" class="prompt-btn" role="option" aria-selected="true" data-moment-idx="0">
               <span class="prompt-utterance">“Milo, sence bu iki gömlekten hangisini giymeliyim?”</span>
               <span class="prompt-tag">Stil ve Görüş</span>
             </button>
-            <button type="button" class="prompt-btn" role="option" aria-selected="false">
+            <button type="button" class="prompt-btn" role="option" aria-selected="false" data-moment-idx="1">
               <span class="prompt-utterance">“Yarın sabah 09:30’a dişçi randevusu ekle ve beni 08:00’de uyandır.”</span>
               <span class="prompt-tag">Plan ve Alarm</span>
             </button>
-            <button type="button" class="prompt-btn" role="option" aria-selected="false">
+            <button type="button" class="prompt-btn" role="option" aria-selected="false" data-moment-idx="2">
               <span class="prompt-utterance">“Anneme WhatsApp’tan ‘Yoldayım, 20 dakikaya oradayım’ diye mesaj at.”</span>
               <span class="prompt-tag">Mesajlaşma</span>
             </button>
-            <button type="button" class="prompt-btn" role="option" aria-selected="false">
+            <button type="button" class="prompt-btn" role="option" aria-selected="false" data-moment-idx="3">
               <span class="prompt-utterance">“Milo, bizi çek! Gülümseyince fotoğrafımızı kaydet.”</span>
               <span class="prompt-tag">Anı Yakalama</span>
             </button>
-            <button type="button" class="prompt-btn" role="option" aria-selected="false">
+            <button type="button" class="prompt-btn" role="option" aria-selected="false" data-moment-idx="4">
               <span class="prompt-utterance">“Çok yorucu bir gündü Milo, bana biraz moral ver.”</span>
               <span class="prompt-tag">Arkadaşlık</span>
             </button>
@@ -512,11 +515,11 @@
 
             <div class="exp-reactions">
               <div>
-                <span class="exp-reaction-label">Yüz İfadesi</span>
+                <span class="exp-reaction-label" data-i18n="dialogue.faceLabel">Yüz İfadesi</span>
                 <span class="exp-reaction-value" id="exp-face">Şaşkın ve heyecanlı bakış</span>
               </div>
               <div>
-                <span class="exp-reaction-label">Gövde Hareketi</span>
+                <span class="exp-reaction-label" data-i18n="dialogue.bodyLabel">Gövde Hareketi</span>
                 <span class="exp-reaction-value" id="exp-body">Sana doğru yaklaşır ve başını hafifçe eğer</span>
               </div>
             </div>
@@ -529,9 +532,9 @@
     <section class="section section-alt" id="yetenekler">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow">Gündelik Hayatınızla Uyumlu</span>
-          <h2>Telefonunuzdaki her şey, artık sesinizin ucunda.</h2>
-          <p>
+          <span class="eyebrow" data-i18n="capabilities.eyebrow">Gündelik Hayatınızla Uyumlu</span>
+          <h2 data-i18n="capabilities.title">Telefonunuzdaki her şey, artık sesinizin ucunda.</h2>
+          <p data-i18n="capabilities.lead">
             Elleriniz doluyken veya çalışmaya odaklanmışken telefonunuzu elinize almanıza gerek yok. Milo tüm favori uygulamalarınızla uyum içinde çalışır.
           </p>
         </div>
@@ -543,8 +546,8 @@
               <circle cx="12" cy="13" r="4"/>
             </svg>
             <div>
-              <h3>Anlık Kamera ve Selfie</h3>
-              <p>Elinizdekini görür, okur veya en güzel anlarınızı hatıra fotoğrafı olarak çeker.</p>
+              <h3 data-i18n="capabilities.items.0.title">Anlık Kamera ve Selfie</h3>
+              <p data-i18n="capabilities.items.0.desc">Elinizdekini görür, okur veya en güzel anlarınızı hatıra fotoğrafı olarak çeker.</p>
             </div>
           </div>
 
@@ -554,8 +557,8 @@
               <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
             <div>
-              <h3>Takvim ve Randevular</h3>
-              <p>Günlük planınızı özetler ve yeni toplantılarınızı hatırlatmasıyla birlikte takviminize işler.</p>
+              <h3 data-i18n="capabilities.items.1.title">Takvim ve Randevular</h3>
+              <p data-i18n="capabilities.items.1.desc">Günlük planınızı özetler ve yeni toplantılarınızı hatırlatmasıyla birlikte takviminize işler.</p>
             </div>
           </div>
 
@@ -564,8 +567,8 @@
               <circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3L2 6M22 6l-3-3"/>
             </svg>
             <div>
-              <h3>Alarmlar ve Sayaçlar</h3>
-              <p>Sabah uyanma alarmınızı veya mutfaktaki kahve zamanlayıcınızı saniyeler içinde kurar.</p>
+              <h3 data-i18n="capabilities.items.2.title">Alarmlar ve Sayaçlar</h3>
+              <p data-i18n="capabilities.items.2.desc">Sabah uyanma alarmınızı veya mutfaktaki kahve zamanlayıcınızı saniyeler içinde kurar.</p>
             </div>
           </div>
 
@@ -574,8 +577,8 @@
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
             </svg>
             <div>
-              <h3>WhatsApp ve Mesajlar</h3>
-              <p>Sevdiklerinize göndermek istediğiniz mesajları hazırlar, tek onayınızla anında iletir.</p>
+              <h3 data-i18n="capabilities.items.3.title">WhatsApp ve Mesajlar</h3>
+              <p data-i18n="capabilities.items.3.desc">Sevdiklerinize göndermek istediğiniz mesajları hazırlar, tek onayınızla anında iletir.</p>
             </div>
           </div>
 
@@ -584,8 +587,8 @@
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
             </svg>
             <div>
-              <h3>Hızlı Aramalar</h3>
-              <p>“Annemi ara” dediğinizde rehberden doğru kişiyi bulur ve aramayı hemen başlatır.</p>
+              <h3 data-i18n="capabilities.items.4.title">Hızlı Aramalar</h3>
+              <p data-i18n="capabilities.items.4.desc">“Annemi ara” dediğinizde rehberden doğru kişiyi bulur ve aramayı hemen başlatır.</p>
             </div>
           </div>
 
@@ -594,8 +597,8 @@
               <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
             </svg>
             <div>
-              <h3>Yapılacaklar Listesi</h3>
-              <p>Aklınıza gelen fikirleri ve alışveriş listesini unutmadan anımsatıcılarınıza ekler.</p>
+              <h3 data-i18n="capabilities.items.5.title">Yapılacaklar Listesi</h3>
+              <p data-i18n="capabilities.items.5.desc">Aklınıza gelen fikirleri ve alışveriş listesini unutmadan anımsatıcılarınıza ekler.</p>
             </div>
           </div>
 
@@ -604,8 +607,8 @@
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
             </svg>
             <div>
-              <h3>Doğum Günü Hatırlatma</h3>
-              <p>Rehberinizdeki arkadaşlarınızın yaklaşan doğum günlerini önceden size haber verir.</p>
+              <h3 data-i18n="capabilities.items.6.title">Doğum Günü Hatırlatma</h3>
+              <p data-i18n="capabilities.items.6.desc">Rehberinizdeki arkadaşlarınızın yaklaşan doğum günlerini önceden size haber verir.</p>
             </div>
           </div>
 
@@ -614,8 +617,8 @@
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             </svg>
             <div>
-              <h3>Hava Durumu ve Yol Tarifi</h3>
-              <p>Evden çıkmadan önce hava tahminini söyler ve gideceğiniz yerin rotasını haritada açar.</p>
+              <h3 data-i18n="capabilities.items.7.title">Hava Durumu ve Yol Tarifi</h3>
+              <p data-i18n="capabilities.items.7.desc">Evden çıkmadan önce hava tahminini söyler ve gideceğiniz yerin rotasını haritada açar.</p>
             </div>
           </div>
 
@@ -624,8 +627,8 @@
               <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
             </svg>
             <div>
-              <h3>Günlük Hareket ve Adım</h3>
-              <p>Gün içinde kaç adım attığınızı ve ne kadar aktif kaldığınızı sizinle paylaşır.</p>
+              <h3 data-i18n="capabilities.items.8.title">Günlük Hareket ve Adım</h3>
+              <p data-i18n="capabilities.items.8.desc">Gün içinde kaç adım attığınızı ve ne kadar aktif kaldığınızı sizinle paylaşır.</p>
             </div>
           </div>
 
@@ -635,8 +638,8 @@
               <polyline points="22,6 12,13 2,6"/>
             </svg>
             <div>
-              <h3>E-Posta ve Bulut Albümü</h3>
-              <p>Yeni gelen önemli e-postalarınızı sesli okur, çektiği fotoğrafları bulut hesabınıza yedekler.</p>
+              <h3 data-i18n="capabilities.items.9.title">E-Posta ve Bulut Albümü</h3>
+              <p data-i18n="capabilities.items.9.desc">Yeni gelen önemli e-postalarınızı sesli okur, çektiği fotoğrafları bulut hesabınıza yedekler.</p>
             </div>
           </div>
         </div>
@@ -647,32 +650,32 @@
     <section class="section" id="kurulum">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow">Zahmetsiz Başlangıç</span>
-          <h2>Saniyeler içinde hazır.</h2>
-          <p>Karmaşık kablolar veya kurulumlar yok. Kutudan çıkarın ve hemen tanışın.</p>
+          <span class="eyebrow" data-i18n="setup.eyebrow">Zahmetsiz Başlangıç</span>
+          <h2 data-i18n="setup.title">Saniyeler içinde hazır.</h2>
+          <p data-i18n="setup.lead">Karmaşık kablolar veya kurulumlar yok. Kutudan çıkarın ve hemen tanışın.</p>
         </div>
 
         <div class="steps-grid">
           <div class="step-col reveal-on-scroll">
             <span class="step-num">01</span>
-            <h3>Yerleştirin</h3>
-            <p>
+            <h3 data-i18n="setup.s1Title">Yerleştirin</h3>
+            <p data-i18n="setup.s1Body">
               iPhone’unuzu Milo’nun dengeli standına yatay olarak bırakın. Cihazınız anında tam ekran yüz moduna geçer.
             </p>
           </div>
 
           <div class="step-col reveal-on-scroll">
             <span class="step-num">02</span>
-            <h3>Eşleştirin</h3>
-            <p>
+            <h3 data-i18n="setup.s2Title">Eşleştirin</h3>
+            <p data-i18n="setup.s2Body">
               Milo uygulaması evinizin kablosuz ağını otomatik bulur ve tek dokunuşla gövdeyle bağlantıyı kurar.
             </p>
           </div>
 
           <div class="step-col reveal-on-scroll">
             <span class="step-num">03</span>
-            <h3>Merhaba Deyin</h3>
-            <p>
+            <h3 data-i18n="setup.s3Title">Merhaba Deyin</h3>
+            <p data-i18n="setup.s3Body">
               “Merhaba Milo” diyerek sohbeti başlatın. Artık masanızda sizi tanıyan ve dinleyen bir dostunuz var.
             </p>
           </div>
@@ -685,16 +688,16 @@
       <div class="container">
         <div class="corporate-showcase reveal-on-scroll">
           <div class="corporate-copy">
-            <span class="eyebrow">Kurumlar İçin Promosyon</span>
-            <h2>Şimdiye kadar verilmiş en iyi çalışan hediyesi.</h2>
-            <p class="corporate-lead">
+            <span class="eyebrow" data-i18n="corporate.eyebrow">Kurumlar İçin Promosyon</span>
+            <h2 data-i18n="corporate.title">Şimdiye kadar verilmiş en iyi çalışan hediyesi.</h2>
+            <p class="corporate-lead" data-i18n="corporate.lead">
               Unutulan ajandalar, çekmecede bekleyen kupalar yerine ekibinizin masasında her gün yaşayacak bir deneyim armağan edin. Milo, çalışanlarınızın verimliliğini artırırken markanızı masalarının başköşesine taşır.
             </p>
             <div class="corporate-actions">
-              <button type="button" class="btn btn-primary open-corporate-modal">
+              <button type="button" class="btn btn-primary open-corporate-modal" data-i18n="corporate.cta">
                 Kurumsal Teklif Al
               </button>
-              <a href="#sss" class="btn btn-secondary">
+              <a href="#sss" class="btn btn-secondary" data-i18n="corporate.link">
                 Detayları inceleyin ›
               </a>
             </div>
@@ -702,16 +705,16 @@
 
           <div class="corporate-pillars">
             <div class="pillar-item">
-              <h3>Markanıza Özel Karşılama</h3>
-              <p>Kurumsal siparişlerde Milo’nun açılış ekranı şirketinizin logosu ve özel hoş geldiniz mesajıyla kişiselleştirilir.</p>
+              <h3 data-i18n="corporate.p1Title">Markanıza Özel Karşılama</h3>
+              <p data-i18n="corporate.p1Body">Kurumsal siparişlerde Milo’nun açılış ekranı şirketinizin logosu ve özel hoş geldiniz mesajıyla kişiselleştirilir.</p>
             </div>
             <div class="pillar-item">
-              <h3>iPhone ve Android ile Uyumlu</h3>
-              <p>Her çalışanın kendi telefonuna saniyeler içinde bağlanır. Ekip içi takvim, e-posta ve hatırlatıcıları sesle yönetir.</p>
+              <h3 data-i18n="corporate.p2Title">iPhone ve Android ile Uyumlu</h3>
+              <p data-i18n="corporate.p2Body">Her çalışanın kendi telefonuna saniyeler içinde bağlanır. Ekip içi takvim, e-posta ve hatırlatıcıları sesle yönetir.</p>
             </div>
             <div class="pillar-item">
-              <h3>Özel Kutu ve Toplu Fiyatlandırma</h3>
-              <p>25 adet ve üzeri kurumsal promosyon siparişlerinde özel baskılı ambalaj ve ekibinize özel fiyat avantajları sunulur.</p>
+              <h3 data-i18n="corporate.p3Title">Özel Kutu ve Toplu Fiyatlandırma</h3>
+              <p data-i18n="corporate.p3Body">25 adet ve üzeri kurumsal promosyon siparişlerinde özel baskılı ambalaj ve ekibinize özel fiyat avantajları sunulur.</p>
             </div>
           </div>
         </div>
@@ -722,42 +725,42 @@
     <section class="section" id="sss" aria-labelledby="faq-heading">
       <div class="container">
         <div class="section-header centered">
-          <span class="eyebrow">Merak Edilenler</span>
-          <h2 id="faq-heading">Sıkça sorulan sorular.</h2>
+          <span class="eyebrow" data-i18n="faq.eyebrow">Merak Edilenler</span>
+          <h2 id="faq-heading" data-i18n="faq.title">Sıkça sorulan sorular.</h2>
         </div>
 
         <div class="faq-container">
           <details class="faq-item" name="milo-faq" open>
-            <summary>Gizliliğim nasıl korunuyor? Milo her zaman kameraya bakıyor mu?</summary>
+            <summary data-i18n="faq.q1">Gizliliğim nasıl korunuyor? Milo her zaman kameraya bakıyor mu?</summary>
             <div class="faq-content">
-              <p>
+              <p data-i18n="faq.a1">
                 Gizliliğiniz tamamen sizin kontrolünüzdedir. Milo yalnızca siz ona görsel bir soru sorduğunuzda veya fotoğraf çekmesini istediğinizde kamerayı kullanır. Üstelik uygulama içinden kamera, rehber, takvim veya konum gibi her bir yeteneği istediğiniz an tek dokunuşla kapatabilirsiniz.
               </p>
             </div>
           </details>
 
           <details class="faq-item" name="milo-faq">
-            <summary>Hangi iPhone modelleriyle uyumlu çalışır?</summary>
+            <summary data-i18n="faq.q2">Hangi iPhone modelleriyle uyumlu çalışır?</summary>
             <div class="faq-content">
-              <p>
+              <p data-i18n="faq.a2">
                 Milo, güncel iOS sürümünü destekleyen tüm modern iPhone modelleriyle kusursuz çalışır. Telefonunuzu yatay olarak Milo’nun gövdesine yerleştirdiğinizde ekran otomatik olarak Milo’nun canlı yüzüne dönüşür.
               </p>
             </div>
           </details>
 
           <details class="faq-item" name="milo-faq">
-            <summary>Benim yerime yanlışlıkla arama yapabilir veya mesaj gönderebilir mi?</summary>
+            <summary data-i18n="faq.q3">Benim yerime yanlışlıkla arama yapabilir veya mesaj gönderebilir mi?</summary>
             <div class="faq-content">
-              <p>
+              <p data-i18n="faq.a3">
                 Hayır. Milo bir arama başlatmadan veya mesaj göndermeden önce her zaman alıcıyı ve mesajı size tekrar ederek onayınızı alır. Böylece hiçbir mesajınız veya aramanız sizin bilginiz dışında gerçekleşmez.
               </p>
             </div>
           </details>
 
           <details class="faq-item" name="milo-faq">
-            <summary>Milo’nun şarjı ne kadar gider ve bittiğinde ne olur?</summary>
+            <summary data-i18n="faq.q4">Milo’nun şarjı ne kadar gider ve bittiğinde ne olur?</summary>
             <div class="faq-content">
-              <p>
+              <p data-i18n="faq.a4">
                 Milo’nun hareketli gövdesi gün boyu masaüstü kullanımına eşlik edecek yüksek kapasiteli şarjlı bataryaya sahiptir. Enerjisi %5’in altına indiğinde ekranda sevimli bir şarj uyarısı belirir ve batarya sağlığını korumak için dinlenme moduna geçer.
               </p>
             </div>
@@ -769,15 +772,15 @@
     <!-- CLOSING CALLOUT -->
     <section class="closing-section">
       <div class="container">
-        <h2>Masanızda yeni bir hayat başlıyor.</h2>
-        <p>
+        <h2 data-i18n="closing.title">Masanızda yeni bir hayat başlıyor.</h2>
+        <p data-i18n="closing.lead">
           Sizi dinleyen, gülümseyen ve her gününüzü daha keyifli hale getiren Milo ile hemen tanışın.
         </p>
         <div class="hero-cta-row">
-          <button type="button" class="btn btn-primary open-order-modal">
+          <button type="button" class="btn btn-primary open-order-modal" data-i18n="closing.ctaPrimary">
             Milo’yu Sipariş Et
           </button>
-          <a href="#main-content" class="btn btn-secondary">
+          <a href="#main-content" class="btn btn-secondary" data-i18n="closing.ctaSecondary">
             Yukarı dön ›
           </a>
         </div>
@@ -788,61 +791,61 @@
   <dialog id="order-dialog" class="milo-modal" closedby="any" aria-labelledby="modal-title">
     <form method="dialog">
       <div class="modal-header">
-        <h2 id="modal-title" style="font-size: 1.25rem; font-weight: 700;">Milo Kutu İçeriği</h2>
+        <h2 id="modal-title" style="font-size: 1.25rem; font-weight: 700;" data-i18n="orderModal.title">Milo Kutu İçeriği</h2>
         <button value="close" class="modal-close" aria-label="Pencereyi kapat">✕</button>
       </div>
-      <p style="color: var(--subtext); font-size: 0.92rem; margin-bottom: 18px;">
+      <p style="color: var(--subtext); font-size: 0.92rem; margin-bottom: 18px;" data-i18n="orderModal.lead">
         Milo, kutudan çıktığı andan itibaren iPhone’unuzla buluşmaya hazırdır.
       </p>
       <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; font-size: 0.9rem;">
         <li style="padding: 14px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle);">
-          <strong style="color: #fff;">Milo Hareketli Robot Gövdesi</strong>
-          <p style="color: var(--subtext); font-size: 0.82rem; margin-top: 2px;">360° sessiz dönüş, aktif denge freni ve dahili şarj edilebilir batarya.</p>
+          <strong style="color: #fff;" data-i18n="orderModal.i1Title">Milo Hareketli Robot Gövdesi</strong>
+          <p style="color: var(--subtext); font-size: 0.82rem; margin-top: 2px;" data-i18n="orderModal.i1Body">360° sessiz dönüş, aktif denge freni ve dahili şarj edilebilir batarya.</p>
         </li>
         <li style="padding: 14px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle);">
-          <strong style="color: #fff;">Milo iOS Uygulaması</strong>
-          <p style="color: var(--subtext); font-size: 0.82rem; margin-top: 2px;">9 canlı duygu modu, göz teması takibi ve tüm telefon yetenekleri.</p>
+          <strong style="color: #fff;" data-i18n="orderModal.i2Title">Milo iOS Uygulaması</strong>
+          <p style="color: var(--subtext); font-size: 0.82rem; margin-top: 2px;" data-i18n="orderModal.i2Body">9 canlı duygu modu, göz teması takibi ve tüm telefon yetenekleri.</p>
         </li>
         <li style="padding: 14px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle);">
-          <strong style="color: #fff;">Şarj Kablosu ve Başlangıç Rehberi</strong>
-          <p style="color: var(--subtext); font-size: 0.82rem; margin-top: 2px;">Saniyeler içinde kablosuz ağ eşleştirmesi için hızlı kılavuz.</p>
+          <strong style="color: #fff;" data-i18n="orderModal.i3Title">Şarj Kablosu ve Başlangıç Rehberi</strong>
+          <p style="color: var(--subtext); font-size: 0.82rem; margin-top: 2px;" data-i18n="orderModal.i3Body">Saniyeler içinde kablosuz ağ eşleştirmesi için hızlı kılavuz.</p>
         </li>
       </ul>
-      <button value="ok" class="btn btn-primary" style="width: 100%;">Tamam</button>
+      <button value="ok" class="btn btn-primary" style="width: 100%;" data-i18n="orderModal.ok">Tamam</button>
     </form>
   </dialog>
 
   <!-- Corporate Quote Modal -->
   <dialog id="corporate-dialog" class="milo-modal" closedby="any" aria-labelledby="corp-modal-title">
     <div class="modal-header">
-      <h2 id="corp-modal-title" style="font-size: 1.25rem; font-weight: 700;">Kurumsal Promosyon Talebi</h2>
+      <h2 id="corp-modal-title" style="font-size: 1.25rem; font-weight: 700;" data-i18n="corpModal.title">Kurumsal Promosyon Talebi</h2>
       <form method="dialog">
         <button value="close" class="modal-close" aria-label="Pencereyi kapat">✕</button>
       </form>
     </div>
-    <p style="color: var(--subtext); font-size: 0.9rem; margin-bottom: 18px;">
+    <p style="color: var(--subtext); font-size: 0.9rem; margin-bottom: 18px;" data-i18n="corpModal.lead">
       Ekibiniz veya müşterileriniz için özel markalı Milo teklifi hazırlayalım.
     </p>
     <form id="corporate-form" class="corp-form">
       <div class="form-field">
-        <label for="corp-company">Şirket Adı</label>
-        <input type="text" id="corp-company" name="organization" autocomplete="organization" required placeholder="Örn. Acme Teknoloji A.Ş.">
+        <label for="corp-company" data-i18n="corpModal.companyLabel">Şirket Adı</label>
+        <input type="text" id="corp-company" name="organization" autocomplete="organization" required placeholder="Örn. Acme Teknoloji A.Ş." data-i18n-placeholder="corpModal.companyPlaceholder">
       </div>
       <div class="form-field">
-        <label for="corp-name">Adınız Soyadınız</label>
-        <input type="text" id="corp-name" name="name" autocomplete="name" required placeholder="Adınız Soyadınız">
+        <label for="corp-name" data-i18n="corpModal.nameLabel">Adınız Soyadınız</label>
+        <input type="text" id="corp-name" name="name" autocomplete="name" required placeholder="Adınız Soyadınız" data-i18n-placeholder="corpModal.namePlaceholder">
       </div>
       <div class="form-row">
         <div class="form-field">
-          <label for="corp-email">Kurumsal E-posta</label>
-          <input type="email" id="corp-email" name="email" autocomplete="email" inputmode="email" required placeholder="ad@sirket.com">
+          <label for="corp-email" data-i18n="corpModal.emailLabel">Kurumsal E-posta</label>
+          <input type="email" id="corp-email" name="email" autocomplete="email" inputmode="email" required placeholder="ad@sirket.com" data-i18n-placeholder="corpModal.emailPlaceholder">
         </div>
         <div class="form-field">
-          <label for="corp-qty">Tahmini Adet</label>
+          <label for="corp-qty" data-i18n="corpModal.qtyLabel">Tahmini Adet</label>
           <input type="number" id="corp-qty" name="quantity" min="10" step="5" value="50" required>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">Teklif Talep Et</button>
+      <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;" data-i18n="corpModal.submit">Teklif Talep Et</button>
       <p id="corp-form-status" class="corp-form-status" aria-live="polite"></p>
     </form>
   </dialog>
@@ -854,12 +857,13 @@
         <span style="font-size: 0.9rem; font-weight: 600;">Milo</span>
       </div>
 
-      <p class="footer-copy">
+      <p class="footer-copy" data-i18n="footer.copy">
         © 2026 Milo. Tüm hakları saklıdır.
       </p>
     </div>
   </footer>
 
+  <script src="i18n.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
