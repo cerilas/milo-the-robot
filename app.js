@@ -42,9 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const expFace = document.getElementById("exp-face");
   const expBody = document.getElementById("exp-body");
 
+  const wfTabs = document.querySelectorAll(".wf-tab");
+  const wfPromptEl = document.getElementById("wf-prompt");
+  const wfPipelineEl = document.getElementById("wf-pipeline");
+
   let currentLang = localStorage.getItem("milo-lang") === "en" ? "en" : "tr";
   let currentEmotionKey = "neutral";
   let currentMomentIdx = 0;
+  let currentWfIdx = 0;
   let autoCycleTimer = null;
   let isAutoCycling = true;
   let cameraStream = null;
@@ -111,6 +116,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (expFace) expFace.textContent = activeMoment.faceReaction;
       if (expBody) expBody.textContent = activeMoment.bodyMovement;
     }
+
+    // Update workflow tabs & active pipeline
+    wfTabs.forEach((tab, idx) => {
+      const f = dict.workflows.flows[idx];
+      if (f) tab.textContent = f.tab;
+    });
+    renderWorkflow(currentWfIdx);
 
     // Update tracking button & panel strings
     if (trackingBtn && splitContainer) {
@@ -339,6 +351,69 @@ document.addEventListener("DOMContentLoaded", () => {
 
   promptButtons.forEach((btn, idx) => {
     btn.addEventListener("click", () => renderMoment(idx));
+  });
+
+  const WF_ICONS = {
+    camera: '<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>',
+    spark: '<path d="M12 2L14.8 9.2L22 12L14.8 14.8L12 22L9.2 14.8L2 12L9.2 9.2L12 2Z"/>',
+    mail: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
+    drive: '<polygon points="12 3 4 17 8 21 16 21 20 17 12 3"/>',
+    chat: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+    mic: '<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/>',
+    calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
+    phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>'
+  };
+
+  function renderWorkflow(index) {
+    const flow = t().workflows.flows[index];
+    if (!flow || !wfPipelineEl) return;
+    currentWfIdx = index;
+
+    wfTabs.forEach((tab, idx) => {
+      tab.setAttribute("aria-selected", idx === index ? "true" : "false");
+    });
+
+    if (wfPromptEl) wfPromptEl.textContent = flow.prompt;
+
+    wfPipelineEl.innerHTML = "";
+    flow.steps.forEach((step, idx) => {
+      const card = document.createElement("div");
+      card.className = "wf-step-card";
+
+      const num = document.createElement("span");
+      num.className = "wf-step-num";
+      num.textContent = `0${idx + 1}`;
+
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", "0 0 24 24");
+      svg.setAttribute("fill", "none");
+      svg.setAttribute("stroke", "currentColor");
+      svg.setAttribute("stroke-width", "1.6");
+      svg.setAttribute("class", "wf-step-icon");
+      svg.setAttribute("aria-hidden", "true");
+      svg.innerHTML = WF_ICONS[step.icon] || WF_ICONS.spark;
+
+      const h3 = document.createElement("h3");
+      h3.textContent = step.app;
+
+      const p = document.createElement("p");
+      p.textContent = step.action;
+
+      card.append(num, svg, h3, p);
+      wfPipelineEl.appendChild(card);
+
+      if (idx < flow.steps.length - 1) {
+        const arrow = document.createElement("div");
+        arrow.className = "wf-arrow";
+        arrow.setAttribute("aria-hidden", "true");
+        arrow.textContent = "→";
+        wfPipelineEl.appendChild(arrow);
+      }
+    });
+  }
+
+  wfTabs.forEach((tab, idx) => {
+    tab.addEventListener("click", () => renderWorkflow(idx));
   });
 
   const openModalBtns = document.querySelectorAll(".open-order-modal");

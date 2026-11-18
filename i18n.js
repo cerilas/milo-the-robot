@@ -214,6 +214,41 @@ window.MILO_I18N = {
     },
     footer: {
       copy: "© 2026 Milo. Tüm hakları saklıdır."
+    },
+    workflows: {
+      eyebrow: "Uçtan Uca İş Akışları",
+      title: "Tek komutla uygulamalar arasında köprü kurar.",
+      lead: "Milo tek bir uygulama ile yetinmez; kameradan yapay zekaya, e-postadan bulut depolamaya kadar tüm servisleri sizin için arka arkaya çalıştırır.",
+      flows: [
+        {
+          tab: "Fotoğraf → AI → Gmail",
+          prompt: "“Milo, masadaki notu çek, özetle ve ekibe mail at.”",
+          steps: [
+            { app: "Kamera", action: "Belgeyi veya masadaki notu anında çeker", icon: "camera" },
+            { app: "Yapay Zeka", action: "Görüntüyü okur, düzenler ve özet çıkarır", icon: "spark" },
+            { app: "Gmail", action: "Hazırlanan özeti ekibinize e-posta olarak yollar", icon: "mail" }
+          ]
+        },
+        {
+          tab: "Selfie → Düzenle → Drive & WhatsApp",
+          prompt: "“Bizi çek, ışığı iyileştir, Drive’a kaydet ve Ahmet’e at.”",
+          steps: [
+            { app: "Kamera", action: "Gülümsediğiniz anı yakalar", icon: "camera" },
+            { app: "AI Stüdyo", action: "Işığı ve renkleri otomatik düzenler", icon: "spark" },
+            { app: "Google Drive", action: "Fotoğrafı ortak albümünüze yedekler", icon: "drive" },
+            { app: "WhatsApp", action: "Ahmet’e gönderilmeye hazır mesajı açar", icon: "chat" }
+          ]
+        },
+        {
+          tab: "Ses → Takvim → NetGSM SMS",
+          prompt: "“Yarın 14:00’e toplantı koy ve katılımcılara SMS gönder.”",
+          steps: [
+            { app: "Sesli Komut", action: "Tarihi, saati ve kişileri anlar", icon: "mic" },
+            { app: "Google Calendar", action: "Toplantıyı takviminize işler", icon: "calendar" },
+            { app: "NetGSM", action: "Katılımcılara bilgilendirme SMS’i iletir", icon: "phone" }
+          ]
+        }
+      ]
     }
   },
 
@@ -430,6 +465,41 @@ window.MILO_I18N = {
     },
     footer: {
       copy: "© 2026 Milo. All rights reserved."
+    },
+    workflows: {
+      eyebrow: "End-to-End Workflows",
+      title: "One request. Multiple apps, working together.",
+      lead: "Milo doesn’t stop at a single app—it chains your camera, AI, email, and cloud tools together in one seamless flow.",
+      flows: [
+        {
+          tab: "Photo → AI → Gmail",
+          prompt: "“Milo, snap this note on my desk, summarize it, and email the team.”",
+          steps: [
+            { app: "Camera", action: "Captures the note or document instantly", icon: "camera" },
+            { app: "AI Engine", action: "Reads, edits, and drafts a clear summary", icon: "spark" },
+            { app: "Gmail", action: "Sends the polished summary to your team", icon: "mail" }
+          ]
+        },
+        {
+          tab: "Selfie → Edit → Drive & WhatsApp",
+          prompt: "“Snap us, enhance the lighting, save to Drive, and send to Alex.”",
+          steps: [
+            { app: "Camera", action: "Captures the moment you smile", icon: "camera" },
+            { app: "AI Studio", action: "Enhances lighting and color automatically", icon: "spark" },
+            { app: "Google Drive", action: "Backs up the photo to your shared album", icon: "drive" },
+            { app: "WhatsApp", action: "Prepares the photo message for Alex", icon: "chat" }
+          ]
+        },
+        {
+          tab: "Voice → Calendar → NetGSM SMS",
+          prompt: "“Book a meeting tomorrow at 2 PM and text the attendees.”",
+          steps: [
+            { app: "Voice", action: "Understands the date, time, and guests", icon: "mic" },
+            { app: "Google Calendar", action: "Schedules the event on your calendar", icon: "calendar" },
+            { app: "NetGSM", action: "Sends an automatic SMS alert to attendees", icon: "phone" }
+          ]
+        }
+      ]
     }
   }
 };

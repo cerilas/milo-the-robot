@@ -1368,6 +1368,111 @@ dialog.milo-modal::backdrop {
   min-height: 1.2em;
 }
 
+/* End-to-End Workflows Pipeline */
+.workflow-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.wf-tab {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--subtext);
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wf-tab:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+.wf-tab[aria-selected="true"] {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+  font-weight: 600;
+}
+
+.workflow-stage {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  padding: 36px;
+  text-align: center;
+}
+
+.wf-prompt-quote {
+  font-size: 1.22rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.015em;
+  margin-bottom: 32px;
+}
+
+.wf-pipeline {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 14px;
+}
+
+.wf-step-card {
+  flex: 1 1 0;
+  background: var(--bg-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.wf-step-num {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+  letter-spacing: 0.04em;
+}
+
+.wf-step-icon {
+  width: 36px;
+  height: 36px;
+  color: var(--text);
+  opacity: 0.9;
+}
+
+.wf-step-card h3 {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.wf-step-card p {
+  font-size: 0.86rem;
+  color: var(--subtext);
+  line-height: 1.45;
+}
+
+.wf-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
 /* Responsive */
 @media (max-width: 960px) {
   .playground-box,
@@ -1375,6 +1480,15 @@ dialog.milo-modal::backdrop {
   .steps-grid,
   .corporate-showcase {
     grid-template-columns: 1fr;
+  }
+
+  .wf-pipeline {
+    flex-direction: column;
+  }
+
+  .wf-arrow {
+    transform: rotate(90deg);
+    padding: 4px 0;
   }
 
   .span-7,
