@@ -111,7 +111,7 @@ body {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 20px;
   list-style: none;
 }
 
@@ -1384,11 +1384,13 @@ dialog.milo-modal::backdrop {
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 860px) {
   .nav-links {
     display: none;
   }
+}
 
+@media (max-width: 720px) {
   .exp-reactions,
   .form-row {
     grid-template-columns: 1fr;
